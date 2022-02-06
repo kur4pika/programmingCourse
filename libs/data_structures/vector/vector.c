@@ -7,6 +7,11 @@ void check_memory(const int *data) {
     }
 }
 
+void emptyVector() {
+    fprintf(stderr, "vector is empty");
+    exit(1);
+}
+
 //возвращает структуру-дескриптор вектор из capacity значений
 vector createVector(const size_t capacity) {
     int *data = NULL;
@@ -45,5 +50,43 @@ void shrinkToFit(vector *v) {
 //освобождает память, выделенную вектору
 void deleteVector(vector *v) {
     reserve(v, 0);
+}
+
+//проверяет является ли вектор пустым
+bool isEmpty(vector *v) {
+    return v->size == 0;
+}
+
+//проверяет явялется ли вектор полным
+bool isFull(vector *v) {
+    return v->size == v->capacity;
+}
+
+//проверяет является ли вектор нулевым
+bool isZero(vector *v) {
+    return v->capacity == 0;
+}
+
+//возвращает i-ый элемент вектора v
+int getVectorValue(vector *v, size_t i) {
+    return v->data[i];
+}
+
+//добавляет элемент x в конец вектора v
+void pushBack(vector *v, int x) {
+    if (isFull(v) && !isZero(v))
+        reserve(v, v->size * 2);
+    else if (isZero(v))
+        reserve(v, 1);
+
+    v->data[v->size++] = x;
+}
+
+//удаляет последний элемент из вектора
+void popBack(vector *v) {
+    if (isEmpty(v))
+        emptyVector();
+
+    v->size--;
 }
 
