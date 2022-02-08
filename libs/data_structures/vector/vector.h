@@ -13,7 +13,7 @@ typedef struct vector {
 
 vector createVector(size_t n);//возвращает структуру-дескриптор вектор из n значений
 
-void reserve(vector *v, size_t newCapacity);//изменяет количество памяти, выделенное под хранение элементов вектора v, на newCapacity
+void reserve(vector *v, size_t newCapacity);//изменяет количество памяти, выделенное под хранение элементов вектора v на newCapacity
 
 void clear(vector *v);//удаляет элементы из вектора v, но не освобождает выделенную память
 
@@ -38,7 +38,5 @@ int* atVector(vector v, size_t index);//возвращает указатель 
 int* back(vector v);//возвращает указатель на последний элемент вектора v
 
 int* front(vector v);//возвращает указатель на нулевой элемент вектора v
-
-
 
 #endif //UNTITLED3_VECTOR_H
