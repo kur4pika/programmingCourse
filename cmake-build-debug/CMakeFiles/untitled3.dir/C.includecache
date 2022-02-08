@@ -18,13 +18,3 @@ stdlib.h
 stdbool.h
 -
 
-C:/CLionProjects/untitled3/main.c
-stdio.h
--
-stdint.h
--
-libs/data_structures/vector/vector.h
-C:/CLionProjects/untitled3/libs/data_structures/vector/vector.h
-assert.h
--
-
