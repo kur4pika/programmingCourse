@@ -45,7 +45,7 @@ void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int))
 bool isSquareMatrix(matrix m);// возвращает значение 'истина', если матрица m
                               // является квадратной, 'ложь' – в противном случае
 
-bool twoMatricesEqual(matrix m1, matrix m2);// возвращает значение 'истина', если матрицы m1 и m2 равны,
+bool areTwoMatricesEqual(matrix m1, matrix m2);// возвращает значение 'истина', если матрицы m1 и m2 равны,
                                             // 'ложь' – в противном случае
 
 bool isEMatrix(matrix m);// возвращает значение 'истина', если матрица m является единичной, 'ложь' – в противном случае

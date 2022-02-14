@@ -126,7 +126,7 @@ bool twoArrayEqual(const int *a, const size_t sizeA, const int *b, const size_t 
 }
 
 //возвращает значение 'истина', если матрицы m1 и m2 равны, 'ложь' – в противном случае
-bool twoMatricesEqual(matrix m1, matrix m2) {
+bool areTwoMatricesEqual(matrix m1, matrix m2) {
     if (m1.nRows != m2.nRows || m1.nCols != m2.nCols)
         return false;
 

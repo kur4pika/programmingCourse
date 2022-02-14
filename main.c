@@ -16,7 +16,7 @@ void test_swapRows() {
                                                4, 7, 2,
                                                3, 6, 7}, 3, 3);
 
-    assert(twoMatricesEqual(m, n));
+    assert(areTwoMatricesEqual(m, n));
 }
 
 void test_swapColumns() {
@@ -30,7 +30,7 @@ void test_swapColumns() {
                                                   7, 6, 3,
                                                   2, 7, 4}, 3, 3);
 
-    assert(twoMatricesEqual(m, n));
+    assert(areTwoMatricesEqual(m, n));
 }
 
 void test_isSquareMatrix() {
@@ -48,7 +48,7 @@ void test_twoMatricesEqual() {
     matrix n = createMatrixFromArray((int []) {1, 4, 5,
                                                3, 6, 7,
                                                4, 7, 2}, 3, 3);
-    assert(twoMatricesEqual(m, n));
+    assert(areTwoMatricesEqual(m, n));
 }
 
 void test_isEMatrix_matrixIsE() {
@@ -116,7 +116,7 @@ void test_transposeSquareMatrix_matrixIsSquare() {
                                                   3, 6, 9}, 3, 3);
     transposeSquareMatrix(&m);
 
-    assert(twoMatricesEqual(m, n));
+    assert(areTwoMatricesEqual(m, n));
 }
 
 void test_transposeSquareMatrix() {
@@ -145,7 +145,7 @@ void test_getMaxValuePos() {
     assert(twoPositionIsEqual(max, expectation));
 }
 
-void test() {
+void test_firstPart() {
     test_swapRows();
     test_swapColumns();
     test_isSquareMatrix();
@@ -157,8 +157,38 @@ void test() {
     test_getMaxValuePos();
 }
 
+
+//1
+//Дана квадратная матрица, все элементы которой различны. Поменять местами
+//строки, в которых находятся максимальный и минимальный элементы
+void swapRowsWithMinAndMaxElement(matrix *m) {
+    position min = getMinValuePos(*m);
+    position max = getMaxValuePos(*m);
+
+    swapRows(m, min.rowIndex, max.rowIndex);
+}
+
+void test_secondPart_firstTask() {
+    matrix m = createMatrixFromArray((int []) {1, 2, 3,
+                                               4, 5, 6,
+                                               7, 8, 9}, 3, 3);
+
+    swapRowsWithMinAndMaxElement(&m);
+
+    matrix expectation = createMatrixFromArray((int []) {7, 8, 9,
+                                               4, 5, 6,
+                                               1, 2, 3}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+}
+
+void test_secondPart() {
+    test_secondPart_firstTask();
+}
+
 int main() {
-    test();
+    test_firstPart();
+    test_secondPart();
 
     return 0;
 }
