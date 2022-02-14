@@ -6,14 +6,22 @@
 
 #IncludeRegexTransform: 
 
-C:/CLionProjects/untitled3/libs/data_structures/vector/vector.c
-vector.h
-C:/CLionProjects/untitled3/libs/data_structures/vector/vector.h
-
-C:/CLionProjects/untitled3/libs/data_structures/vector/vector.h
+C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
 stdio.h
 -
+stdbool.h
+-
 stdlib.h
+-
+
+C:/CLionProjects/untitled3/main.c
+stdio.h
+-
+stdint.h
+-
+libs/data_structures/matrix/matrix.h
+C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
+assert.h
 -
 stdbool.h
 -

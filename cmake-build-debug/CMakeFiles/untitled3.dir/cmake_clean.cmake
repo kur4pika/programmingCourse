@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj"
+  "CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj"
   "CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.obj"
   "CMakeFiles/untitled3.dir/main.c.obj"
   "libuntitled3.dll.a"

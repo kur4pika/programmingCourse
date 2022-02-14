@@ -91,22 +91,53 @@ CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.s"
 	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\data_structures\vector\vector.c -o CMakeFiles\untitled3.dir\libs\data_structures\vector\vector.c.s
 
+CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj: CMakeFiles/untitled3.dir/flags.make
+CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj: ../libs/algorithms/array/array.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\untitled3.dir\libs\algorithms\array\array.c.obj -c C:\CLionProjects\untitled3\libs\algorithms\array\array.c
+
+CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\CLionProjects\untitled3\libs\algorithms\array\array.c > CMakeFiles\untitled3.dir\libs\algorithms\array\array.c.i
+
+CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\algorithms\array\array.c -o CMakeFiles\untitled3.dir\libs\algorithms\array\array.c.s
+
+CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj: CMakeFiles/untitled3.dir/flags.make
+CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj: ../libs/algorithms/algorithms.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\untitled3.dir\libs\algorithms\algorithms.c.obj -c C:\CLionProjects\untitled3\libs\algorithms\algorithms.c
+
+CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.i"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\CLionProjects\untitled3\libs\algorithms\algorithms.c > CMakeFiles\untitled3.dir\libs\algorithms\algorithms.c.i
+
+CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.s"
+	C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\algorithms\algorithms.c -o CMakeFiles\untitled3.dir\libs\algorithms\algorithms.c.s
+
 # Object files for target untitled3
 untitled3_OBJECTS = \
 "CMakeFiles/untitled3.dir/main.c.obj" \
-"CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.obj"
+"CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.obj" \
+"CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj" \
+"CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj"
 
 # External object files for target untitled3
 untitled3_EXTERNAL_OBJECTS =
 
 untitled3.exe: CMakeFiles/untitled3.dir/main.c.obj
 untitled3.exe: CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.obj
+untitled3.exe: CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj
+untitled3.exe: CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj
 untitled3.exe: CMakeFiles/untitled3.dir/build.make
 untitled3.exe: libs/data_structures/libdata_structures.a
+untitled3.exe: libs/algorithms/libalgorithms.a
 untitled3.exe: CMakeFiles/untitled3.dir/linklibs.rsp
 untitled3.exe: CMakeFiles/untitled3.dir/objects1.rsp
 untitled3.exe: CMakeFiles/untitled3.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Linking C executable untitled3.exe"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking C executable untitled3.exe"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\untitled3.dir\link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.

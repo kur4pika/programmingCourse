@@ -141,6 +141,67 @@ data_structures/fast:
 	$(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/build
 .PHONY : data_structures/fast
 
+#=============================================================================
+# Target rules for targets named algorithms
+
+# Build rule for target.
+algorithms: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 algorithms
+.PHONY : algorithms
+
+# fast build rule for target.
+algorithms/fast:
+	$(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/build
+.PHONY : algorithms/fast
+
+libs/algorithms/algorithms.obj: libs/algorithms/algorithms.c.obj
+.PHONY : libs/algorithms/algorithms.obj
+
+# target to build an object file
+libs/algorithms/algorithms.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj
+.PHONY : libs/algorithms/algorithms.c.obj
+
+libs/algorithms/algorithms.i: libs/algorithms/algorithms.c.i
+.PHONY : libs/algorithms/algorithms.i
+
+# target to preprocess a source file
+libs/algorithms/algorithms.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.i
+.PHONY : libs/algorithms/algorithms.c.i
+
+libs/algorithms/algorithms.s: libs/algorithms/algorithms.c.s
+.PHONY : libs/algorithms/algorithms.s
+
+# target to generate assembly for a file
+libs/algorithms/algorithms.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.s
+.PHONY : libs/algorithms/algorithms.c.s
+
+libs/algorithms/array/array.obj: libs/algorithms/array/array.c.obj
+.PHONY : libs/algorithms/array/array.obj
+
+# target to build an object file
+libs/algorithms/array/array.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj
+.PHONY : libs/algorithms/array/array.c.obj
+
+libs/algorithms/array/array.i: libs/algorithms/array/array.c.i
+.PHONY : libs/algorithms/array/array.i
+
+# target to preprocess a source file
+libs/algorithms/array/array.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.i
+.PHONY : libs/algorithms/array/array.c.i
+
+libs/algorithms/array/array.s: libs/algorithms/array/array.c.s
+.PHONY : libs/algorithms/array/array.s
+
+# target to generate assembly for a file
+libs/algorithms/array/array.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.s
+.PHONY : libs/algorithms/array/array.c.s
+
 libs/data_structures/vector/vector.obj: libs/data_structures/vector/vector.c.obj
 .PHONY : libs/data_structures/vector/vector.obj
 
@@ -197,8 +258,15 @@ help:
 	@echo ... depend
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... algorithms
 	@echo ... data_structures
 	@echo ... untitled3
+	@echo ... libs/algorithms/algorithms.obj
+	@echo ... libs/algorithms/algorithms.i
+	@echo ... libs/algorithms/algorithms.s
+	@echo ... libs/algorithms/array/array.obj
+	@echo ... libs/algorithms/array/array.i
+	@echo ... libs/algorithms/array/array.s
 	@echo ... libs/data_structures/vector/vector.obj
 	@echo ... libs/data_structures/vector/vector.i
 	@echo ... libs/data_structures/vector/vector.s
