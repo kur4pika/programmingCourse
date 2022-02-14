@@ -158,9 +158,8 @@ void test_firstPart() {
 }
 
 
-//1
-//Дана квадратная матрица, все элементы которой различны. Поменять местами
-//строки, в которых находятся максимальный и минимальный элементы
+// 1
+// меняет местами строки матрицы m, содержащие максимальный и минимальный элементы
 void swapRowsWithMinAndMaxElement(matrix *m) {
     position min = getMinValuePos(*m);
     position max = getMaxValuePos(*m);
