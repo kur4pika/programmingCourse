@@ -50,8 +50,23 @@ bool twoMatricesEqual(matrix m1, matrix m2);// возвращает значен
 
 bool isEMatrix(matrix m);// возвращает значение 'истина', если матрица m является единичной, 'ложь' – в противном случае
 
-bool isSymmetricMatrix(matrix m);//возвращает значение 'истина', если матрица m является симметричной, 'ложь' – в противном случае
+bool isSymmetricMatrix(matrix m);// возвращает значение 'истина', если матрица m является симметричной, 'ложь' – в противном случае
 
-void transposeSquareMatrix(matrix *m);//транспонирует квадратную матрицу m
+void transposeSquareMatrix(matrix *m);// транспонирует квадратную матрицу m
 
+position getMinValuePos(matrix m);// возвращает позицию минимального элемента матрицы m
+
+void outputPosition(position p);// выводит позицию p
+
+position getMaxValuePos(matrix m);// возвращает позицию максимального элемента матрицы m
+
+matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols);// возвращает матрицу, размера nRows на nCols,
+                                                                       // построенного из элементов массива a, размещенную
+                                                                       // в динамической памяти
+
+matrix *createArrayOfMatrixFromArray(const int *values, size_t nMatrices, size_t nRows, size_t nCols);
+// возвращает указатель на нулевую матрицу массива из nMatrices матриц, размещенных в динамической памяти,
+// построенных из элементов массива a
+
+bool twoPositionIsEqual(position p1, position p2);// возвращает значение 'истина', если позиции равны, иначе - 'ложь'
 #endif //MAIN_C_MATRIX_H

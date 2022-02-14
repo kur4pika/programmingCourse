@@ -2,10 +2,9 @@
 #include <malloc.h>
 #include <stdio.h>
 
-
 #define EXIT_CODE 1
 
-#define  throwExceptionBadIndex() fprintf(stderr, "bad index"); exit(EXIT_CODE)
+#define throwExceptionBadIndex() fprintf(stderr, "bad index"); exit(EXIT_CODE)
 
 
 // размещает в динамической памяти матрицу размером nRows на nCols
@@ -183,10 +182,76 @@ bool isSymmetricMatrix(matrix m) {
 //транспонирует квадратную матрицу m
 void transposeSquareMatrix(matrix *m) {
     if (isSquareMatrix(*m)) {
-            for (size_t i = 0; i < m->nRows; ++i)
-                for (size_t j = i + 1; j < m->nCols; ++j)
-                    swapUniversal(&m->values[i][j], &m->values[j][i], sizeof(int));
-    } else {
-
+        for (size_t i = 0; i < m->nRows; i++)
+            for (size_t j = i + 1; j < m->nCols; j++)
+                swapUniversal(&m->values[i][j], &m->values[j][i], sizeof(int));
     }
 }
+
+//возвращает позицию минимального элемента матрицы m
+position getMinValuePos(matrix m) {
+    position min = {0, 0};
+    for (size_t i = 0; i < m.nRows; i++)
+        for (size_t j = 0; j < m.nCols; j++)
+            if (m.values[i][j] < m.values[min.rowIndex][min.colIndex]) {
+                min.rowIndex = i;
+                min.colIndex = j;
+            }
+
+    return min;
+}
+
+// выводит позицию p
+//void outputPosition(position p) {
+//    printf("{%d, ", p.rowIndex);
+//    printf("%d}", p.colIndex);
+//}
+
+// возвращает позицию максимального элемента матрицы m
+position getMaxValuePos(matrix m) {
+    position max = {0, 0};
+    for (size_t i = 0; i < m.nRows; ++i)
+        for (size_t j = 0; j < m.nCols; ++j)
+            if (m.values[i][j] > m.values[max.rowIndex][max.colIndex]) {
+                max.rowIndex = i;
+                max.colIndex = j;
+            }
+
+    return max;
+}
+
+// возвращает матрицу, размера nRows на nCols, построенного из элементов массива a, размещенную в динамической памяти
+matrix createMatrixFromArray(const int *a, size_t nRows, size_t nCols) {
+    matrix m = getMemMatrix(nRows, nCols);
+
+    int k = 0;
+    for (int i = 0; i < nRows; i++)
+        for (int j = 0; j < nCols; j++)
+            m.values[i][j] = a[k++];
+
+    return m;
+}
+
+// возвращает указатель на нулевую матрицу массива из nMatrices матриц, размещенных в динамической памяти,
+// построенных из элементов массива a
+matrix *createArrayOfMatrixFromArray(const int *values, size_t nMatrices, size_t nRows, size_t nCols) {
+    matrix *ms = getMemArrayOfMatrices(nMatrices, nRows, nCols);
+
+    int l = 0;
+    for (int k = 0; k < nMatrices; k++)
+        for (int i = 0; i < nRows; i++)
+            for (int j = 0; j < nCols; j++)
+                ms[k].values[i][j] = values[l++];
+
+    return ms;
+}
+
+// возвращает значение 'истина', если позиции равны, иначе - 'ложь'
+bool twoPositionIsEqual(position p1, position p2) {
+    if (p1.rowIndex != p2.rowIndex || p1.colIndex != p2.colIndex)
+        return false;
+
+    return true;
+}
+
+
