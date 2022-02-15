@@ -63,7 +63,7 @@ int countIf_(const int *a, size_t n, int (*predicate )(int));
 void deleteIf_(int *a, size_t *n, int (*deletePredicate )(int));
 
 //сортировка массива выбором
-void selectionSort(int *a, int size);
+void selectionSort(const long long *a, int size);
 
 int getMax(const int *a, size_t n);
 

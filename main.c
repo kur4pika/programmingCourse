@@ -4,6 +4,7 @@
 #include "libs/algorithms/array/array.h"
 #include <assert.h>
 #include <stdbool.h>
+#include <stdlib.h>
 
 #define EXIT_CODE 1
 #define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
@@ -480,8 +481,6 @@ void test_sortColsByMinElement() {
 
 // task 4
 
-//Если данная квадратная матрица 𝐴 симметрична, то заменить 𝐴 ее квадратом
-
 // возвращает матрицу m1 * m2
 matrix mulMatrices(matrix m1, matrix m2) {
     matrix product = getMemMatrix(m1.nRows, m2.nCols);
@@ -593,11 +592,126 @@ void test_getSquareOfMatrixIfSymmetric() {
     test_getSquareOfMatrixIfSymmetric_NotSymmetricSquareMatrix();
 }
 
+
+
+//task 5
+
+//Дана квадратная матрица. Если среди сумм элементов строк матрицы нет равных, то транспонировать матрицу
+
+//возвращает значение 'истина', если элементы массива а размера n уникальны, иначе - 'ложь'
+bool isUnique(long long *a, int n) {
+    bool isUnique = true;
+
+    selectionSort(a, n);
+
+    int i = 0;
+    while (i < n - 1 && isUnique) {
+        if (a[i] == a[i + 1])
+            isUnique = 0;
+        i++;
+    }
+
+    return isUnique;
+}
+
+// возвращает сумму элементов массива a размера n
+long long getSum(int *a, int n) {
+    long long sum = 0;
+    for (int i = 0; i < n; i++)
+        sum += a[i];
+
+    return sum;
+}
+
+// транспонирует квадратную матрицу m, если среди сумм элементов строк матрицы нет равных
+void transposeIfMatrixHasNotEqualSumOfRows(matrix m) {
+    long long sum[m.nRows];
+
+    for (int i = 0; i < m.nRows; i++)
+        sum[i] = getSum(m.values[i], m.nCols);
+
+    if (isUnique(sum, m.nRows))
+        transposeSquareMatrix(m);
+}
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {2}, 1, 1);
+
+    transposeIfMatrixHasNotEqualSumOfRows(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {2}, 1, 1);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_hasEqualSum() {
+    matrix m = createMatrixFromArray((int[]) {7, 1, 2,
+                                              1, 8, 1,
+                                              3, 1, 3}, 3, 3);
+
+    transposeIfMatrixHasNotEqualSumOfRows(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {7, 1, 2,
+                                                        1, 8, 1,
+                                                        3, 1, 3}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_hasNotEqualSum() {
+    matrix m = createMatrixFromArray((int[]) {7, 1, 1,
+                                              1, 8, 1,
+                                              3, 1, 3}, 3, 3);
+
+    transposeIfMatrixHasNotEqualSumOfRows(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {7, 1, 3,
+                                                        1, 8, 1,
+                                                        1, 1, 3}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_transposeIfMatrixHasNotEqualSumOfRows_lastsSumIsEqual() {
+    matrix m = createMatrixFromArray((int[]) {3, 1, 3,
+                                              1, 8, 1,
+                                              7, 1, 2}, 3, 3);
+
+    transposeIfMatrixHasNotEqualSumOfRows(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {3, 1, 3,
+                                                        1, 8, 1,
+                                                        7, 1, 2}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_transposeIfMatrixHasNotEqualSumOfRows() {
+    test_transposeIfMatrixHasNotEqualSumOfRows_oneElem();
+    test_transposeIfMatrixHasNotEqualSumOfRows_hasEqualSum();
+    test_transposeIfMatrixHasNotEqualSumOfRows_hasNotEqualSum();
+    test_transposeIfMatrixHasNotEqualSumOfRows_lastsSumIsEqual();
+}
+
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
     test_sortColsByMinElement();
     test_getSquareOfMatrixIfSymmetric();
+    test_transposeIfMatrixHasNotEqualSumOfRows();
 }
 
 int main() {

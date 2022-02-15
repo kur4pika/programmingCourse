@@ -132,13 +132,24 @@ void swap(int *a, int *b) {
     *b = t;
 }
 
-void selectionSort(int *a, const int size) {
+void universSwap(void *a, void *b, const size_t baseSizeType) {
+    char *pa = a;
+    char *pb = b;
+    for (size_t i = 0; i < baseSizeType; i++) {
+        char tmp = *pa;
+        *pa = *pb;
+        *pb = tmp;
+        pa++;
+        pb++;
+    }
+}
+void selectionSort(const long long *a, const int size) {
     for (int i = 0; i < size - 1; i++) {
-        int minPos = i;
+        long long minPos = i;
         for (int j = i + 1; j < size; j++)
             if (a[j] < a[minPos])
                 minPos = j;
-        swap(&a[i], &a[minPos]);
+        universSwap(&a[i], &a[minPos], sizeof(long long));
     }
 }
 
