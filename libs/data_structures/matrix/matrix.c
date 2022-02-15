@@ -26,30 +26,30 @@ matrix *getMemArrayOfMatrices(const int nMatrices, const int nRows, const int nC
 }
 
 // освобождает память, выделенную под хранение матрицы m
-void freeMemMatrix(matrix *m) {
-    for (int i = 0; i < m->nRows; i++)
-        free(m->values[i]);
-    free(m->values);
+void freeMemMatrix(matrix m) {
+    for (int i = 0; i < m.nRows; i++)
+        free(m.values[i]);
+    free(m.values);
 }
 
 // освобождает память, выделенную под хранение массива ms из nMatrices матриц
 void freeMemMatrices(matrix *ms, const int nMatrices) {
     for (int i = 0; i < nMatrices; i++)
-        freeMemMatrix(&ms[i]);
+        freeMemMatrix(ms[i]);
     free(ms);
 }
 
 // ввод матрицы m
-void inputMatrix(matrix *m) {
-    for (int i = 0; i < m->nRows; i++)
-        for (int j = 0; j < m->nCols; j++)
-            scanf("%d", &m->values[i][j]);
+void inputMatrix(matrix m) {
+    for (int i = 0; i < m.nRows; i++)
+        for (int j = 0; j < m.nCols; j++)
+            scanf("%d", &m.values[i][j]);
 }
 
 // ввод массива из nMatrices матриц, хранящейся по адресу ms
-void inputMatrices(matrix *ms, int nMatrices) {
+void inputMatrices(matrix *ms, const int nMatrices) {
     for (int i = 0; i < nMatrices; i++)
-        inputMatrix(&ms[i]);
+        inputMatrix(ms[i]);
 }
 
 // вывод матрицы m
@@ -62,7 +62,7 @@ void outputMatrix(matrix m) {
 }
 
 // вывод массива из nMatrices матриц, хранящейся по адресу ms
-void outputMatrices(matrix *ms, int nMatrices) {
+void outputMatrices(matrix *ms, const int nMatrices) {
     for (int i = 0; i < nMatrices; i++)
         outputMatrix(ms[i]);
 }
@@ -80,32 +80,60 @@ void swapUniversal(void *a, void *b, const size_t baseSizeType) {
 }
 
 // обмен строк с порядковыми номерами i1 и i2 в матрице m
-void swapRows(matrix *m, int i1, int i2) {
-    if (i1 >= m->nRows || i2 >= m->nRows) {
+void swapRows(matrix m, const int i1, const int i2) {
+    if (i1 >= m.nRows || i2 >= m.nRows || i1 < 0 || i2 < 0) {
         throwExceptionBadIndex();
     }
 
-    swapUniversal(&m->values[i1], &m->values[i2], sizeof(int));
+    swapUniversal(&m.values[i1], &m.values[i2], sizeof(int));
 }
 
 // обмен колонок с порядковыми номерами j1 и j2 в матрице m
-void swapColumns(matrix *m, int j1, int j2) {
-    if (j1 >= m->nCols || j2 >= m->nCols) {
+void swapColumns(matrix m, const int j1, const int j2) {
+    if (j1 >= m.nCols || j2 >= m.nCols || j1 < 0 || j2 < 0) {
         throwExceptionBadIndex();
     }
 
-    for (int i = 0; i < m->nRows; i++) {
-        swapUniversal(&m->values[i][j1], &m->values[i][j2], sizeof(int));
+    for (int i = 0; i < m.nRows; i++) {
+        swapUniversal(&m.values[i][j1], &m.values[i][j2], sizeof(int));
     }
 }
 
 // выполняет сортировку вставками строк
 // матрицы m по неубыванию значения функции criteria применяемой для строк
-void insertionSortRowsMatrixByRowCriteria(matrix m, int (*criteria)(int *, int)) {
+void insertionSortMatrix(int a[], matrix *m, void (f)(matrix, int, int), const int rowsOrCols){
+    for (int i = 1; i < rowsOrCols; ++i) {
+        int k = i;
+        while (k > 0 && a[k - 1] >= a[k]){
+            swapUniversal(&a[k - 1], &a[k], sizeof(int));
+            f(*m, k - 1, k);
 
+            k--;
+        }
+    }
 }
 
-//и еще одна функция
+void insertionSortMatrixByCriteria(matrix *m, int (criteria)(int [], int), const bool rowsOrCols){
+    if (rowsOrCols == ROWS){
+        int rowsArr[m->nRows];
+        for (int i = 0; i < m->nRows; ++i)
+            rowsArr[i] = criteria(m->values[i], m->nCols);
+
+        insertionSortMatrix(rowsArr, m, swapRows, m->nRows);
+    }
+    else if (rowsOrCols == COLS){
+        int colsArr[m->nCols];
+        for (int i = 0; i < m->nCols; ++i) {
+            int t[m->nRows];
+            for (int j = 0; j < m->nRows; ++j)
+                t[i] = m->values[j][i];
+
+            colsArr[i] = criteria(t, m->nCols);
+        }
+
+        insertionSortMatrix(colsArr, m, swapColumns, m->nCols);
+    }
+}
 
 //возвращает значение 'истина', если матрица m является квадратной, 'ложь' – в противном случае
 bool isSquareMatrix(matrix m) {
@@ -146,7 +174,7 @@ bool isEMatrix(matrix m) {
     int countOne = 0;
     int countZero = 0;
     for (int i = 0; i < m.nRows; i++) {
-        if (m.values[i][i])
+        if (m.values[i][i] == 1)
             countOne++;
         for (int j = 0; j < m.nRows; j++)
             if (m.values[i][j] == 0)
@@ -180,11 +208,11 @@ bool isSymmetricMatrix(matrix m) {
 }
 
 //транспонирует квадратную матрицу m
-void transposeSquareMatrix(matrix *m) {
-    if (isSquareMatrix(*m)) {
-        for (size_t i = 0; i < m->nRows; i++)
-            for (size_t j = i + 1; j < m->nCols; j++)
-                swapUniversal(&m->values[i][j], &m->values[j][i], sizeof(int));
+void transposeSquareMatrix(matrix m) {
+    if (isSquareMatrix(m)) {
+        for (size_t i = 0; i < m.nRows; i++)
+            for (size_t j = i + 1; j < m.nCols; j++)
+                swapUniversal(&m.values[i][j], &m.values[j][i], sizeof(int));
     }
 }
 

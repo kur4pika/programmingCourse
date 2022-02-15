@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+C:/CLionProjects/untitled3/libs/algorithms/array/array.h
+stddef.h
+-
+
 C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
 stdio.h
 -
@@ -21,6 +25,8 @@ stdint.h
 -
 libs/data_structures/matrix/matrix.h
 C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
+libs/algorithms/array/array.h
+C:/CLionProjects/untitled3/libs/algorithms/array/array.h
 assert.h
 -
 stdbool.h

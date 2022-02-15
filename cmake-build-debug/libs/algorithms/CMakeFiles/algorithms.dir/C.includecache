@@ -6,9 +6,17 @@
 
 #IncludeRegexTransform: 
 
-C:/CLionProjects/untitled3/libs/algorithms/algorithms.c
-algorithms.h
-C:/CLionProjects/untitled3/libs/algorithms/algorithms.h
+C:/CLionProjects/untitled3/libs/algorithms/array/array.c
+array.h
+C:/CLionProjects/untitled3/libs/algorithms/array/array.h
+stdio.h
+-
+limits.h
+-
+assert.h
+-
 
-C:/CLionProjects/untitled3/libs/algorithms/algorithms.h
+C:/CLionProjects/untitled3/libs/algorithms/array/array.h
+stddef.h
+-
 
