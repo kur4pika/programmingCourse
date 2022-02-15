@@ -3,6 +3,9 @@
 #include <limits.h>
 #include <assert.h>
 
+#define EXIT_CODE 1
+#define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
+
 void inputArray_(int *const a, const size_t n) {
     for (size_t i = 0; i < n; i++)
         scanf("%d", &a[i]);
@@ -138,3 +141,16 @@ void selectionSort(int *a, const int size) {
         swap(&a[i], &a[minPos]);
     }
 }
+
+//возвращает индекст максимального элемента массива а размера n
+//int getMax(const int *a, const size_t n) {
+//    if (n < 1)
+//    throwExceptionEmptyArray();
+//
+//    int max = a[0];
+//    for (int i = 1; i < n; i++)
+//        if (a[i] > max)
+//            max = a[i];
+//
+//    return max;
+//}

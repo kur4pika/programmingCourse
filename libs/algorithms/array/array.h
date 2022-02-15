@@ -63,6 +63,8 @@ int countIf_(const int *a, size_t n, int (*predicate )(int));
 void deleteIf_(int *a, size_t *n, int (*deletePredicate )(int));
 
 //сортировка массива выбором
-void selectionSort(int *a, const int size);
+void selectionSort(int *a, int size);
+
+int getMax(const int *a, size_t n);
 
 #endif //MAIN_C_ARRAY_H

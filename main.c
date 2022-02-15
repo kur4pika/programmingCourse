@@ -5,6 +5,9 @@
 #include <assert.h>
 #include <stdbool.h>
 
+#define EXIT_CODE 1
+#define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
+
 void test_swapRows() {
     matrix m1 = createMatrixFromArray((int[]) {1, 4, 5,
                                                3, 6, 7,
@@ -188,6 +191,8 @@ void test_pt1() {
     test_getMaxValuePos();
 }
 
+
+
 // task 1
 
 // меняет местами строки матрицы m, содержащие максимальный и минимальный элементы
@@ -232,19 +237,35 @@ void test_swapRowsWithMaxAndMinValues_maxAndMinInSameRow() {
     freeMemMatrix(expectation);
 }
 
+void test_swapRowsWithMaxAndMinValues_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {1}, 1, 1);
+
+    swapRowsWithMinAndMaxElement(&m);
+
+    matrix expectation = createMatrixFromArray((int[]) {1}, 1, 1);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
 void test_swapRowsWithMinAndMaxElement() {
     test_swapRowsWithMaxAndMinValues_maxAndMinInSameRow();
     test_swapRowsWithMinAndMaxElement_maxAndMinInDifferentRows();
+    test_swapRowsWithMaxAndMinValues_oneElem();
 }
+
+
 
 // task 2
 
-//возвращает индекст максимального элемента массива а размера n
+//возвращает максимальный элемент массива а размера n
 int getMax(const int *a, const size_t n) {
     if (n < 1) {
-        fprintf(stderr, "empty array");
-        exit(1);
+        throwExceptionEmptyArray();
     }
+
     int max = a[0];
     for (int i = 1; i < n; i++)
         if (a[i] > max)
@@ -345,9 +366,120 @@ void test_sortRowsByMinElement() {
     test_sortRowsByMinElement_oneCol();
 }
 
+
+
+// task 3
+
+//возвращает минимальный элемент массива а размера n
+int getMin(const int *a, const size_t n) {
+    if (n < 1) {
+        throwExceptionEmptyArray();
+    }
+
+    int min = a[0];
+    for (int i = 1; i < n; i++)
+        if (a[i] < min)
+            min = a[i];
+
+    return min;
+}
+
+//упорядочивает строки матрицы m по неубыванию наибольших элементов столбцов
+void sortColsByMinElement(matrix m) {
+    insertionSortMatrixByCriteria(&m, getMin, COLS);
+}
+
+void test_sortColsByMinElement_squareMatrix() {
+    matrix m = createMatrixFromArray((int[]) {7, -1, 2,
+                                              1, 8, -2,
+                                              3, 2, 3}, 3, 3);
+
+    sortColsByMinElement(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {2, -1, 7,
+                                                        -2, 8, 1,
+                                                        3, 2, 3}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortColsByMinElement_notSquareMatrix() {
+    matrix m = createMatrixFromArray((int[]) {3, 2, 1, 0,
+                                              -1, -1, -1, -1,
+                                              -2, -5, -7, -6}, 3, 4);
+
+    sortColsByMinElement(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {1, 0, 2, 3,
+                                                        -1, -1, -1, -1,
+                                                        -7, -6, -5, -2}, 3, 4);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortColsByMinElement_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {7}, 1, 1);
+
+    sortColsByMinElement(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {7}, 1, 1);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortColsByMinElement_oneRow() {
+    matrix m = createMatrixFromArray((int[]) {7, 2, 4, 6}, 1, 4);
+
+    sortColsByMinElement(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {2, 4, 6, 7}, 1, 4);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortColsByMinElement_oneCol() {
+    matrix m = createMatrixFromArray((int[]) {7,
+                                              2,
+                                              4,
+                                              6}, 4, 1);
+
+    sortColsByMinElement(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {7,
+                                                        2,
+                                                        4,
+                                                        6}, 4, 1);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortColsByMinElement() {
+    test_sortColsByMinElement_squareMatrix();
+    test_sortColsByMinElement_notSquareMatrix();
+    test_sortColsByMinElement_oneElem();
+    test_sortColsByMinElement_oneRow();
+    test_sortColsByMinElement_oneCol();
+}
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
+    test_sortColsByMinElement();
 }
 
 int main() {

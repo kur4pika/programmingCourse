@@ -5,7 +5,7 @@
 #define EXIT_CODE 1
 
 #define throwExceptionBadIndex() fprintf(stderr, "bad index"); exit(EXIT_CODE)
-
+#define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
 
 // размещает в динамической памяти матрицу размером nRows на nCols
 matrix getMemMatrix(const int nRows, const int nCols) {
@@ -126,9 +126,9 @@ void insertionSortMatrixByCriteria(matrix *m, int (criteria)(int [], int), const
         for (int i = 0; i < m->nCols; ++i) {
             int t[m->nRows];
             for (int j = 0; j < m->nRows; ++j)
-                t[i] = m->values[j][i];
+                t[j] = m->values[j][i];
 
-            colsArr[i] = criteria(t, m->nCols);
+            colsArr[i] = criteria(t, m->nRows);
         }
 
         insertionSortMatrix(colsArr, m, swapColumns, m->nCols);
