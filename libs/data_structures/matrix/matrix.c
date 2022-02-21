@@ -102,10 +102,10 @@ void swapColumns(matrix m, const int j1, const int j2) {
 
 // выполняет сортировку вставками строк(столбцов) матрицы m по неубыванию значения функции
 // criteria применяемой для строк(столбцов)
-void insertionSortMatrix(int a[], matrix *m, void (f)(matrix, int, int), const int rowsOrCols){
+void insertionSortMatrix(int a[], matrix *m, void (f)(matrix, int, int), const int rowsOrCols) {
     for (int i = 1; i < rowsOrCols; ++i) {
         int k = i;
-        while (k > 0 && a[k - 1] >= a[k]){
+        while (k > 0 && a[k - 1] >= a[k]) {
             swapUnivers(&a[k - 1], &a[k], sizeof(int));
             f(*m, k - 1, k);
 
@@ -114,15 +114,14 @@ void insertionSortMatrix(int a[], matrix *m, void (f)(matrix, int, int), const i
     }
 }
 
-void insertionSortMatrixByCriteria(matrix *m, int (criteria)(int [], int), const bool rowsOrCols){
-    if (rowsOrCols == ROWS){
+void insertionSortMatrixByCriteria(matrix *m, int (criteria)(int [], int), const bool rowsOrCols) {
+    if (rowsOrCols == ROWS) {
         int rowsArr[m->nRows];
         for (int i = 0; i < m->nRows; ++i)
             rowsArr[i] = criteria(m->values[i], m->nCols);
 
         insertionSortMatrix(rowsArr, m, swapRows, m->nRows);
-    }
-    else if (rowsOrCols == COLS){
+    } else if (rowsOrCols == COLS) {
         int colsArr[m->nCols];
         for (int i = 0; i < m->nCols; ++i) {
             int t[m->nRows];
@@ -203,9 +202,32 @@ void transposeSquareMatrix(matrix m) {
     }
 }
 
+// транспонирует матрицу m
 void transposeMatrix(matrix *m) {
-    //TODO: реализовать универсальное транспонирование
+    int max = m->nRows;
+    if (m->nCols > m->nRows) {
+        m->values = (int **) realloc(m->values, m->nCols * sizeof(int *));
+        for (int i = m->nRows; i < m->nCols; ++i)
+            m->values[i] = (int *) calloc(m->nCols, sizeof(int));
+        max = m->nCols;
+    } else if (m->nRows > m->nCols)
+        for (int i = 0; i < m->nRows; ++i)
+            m->values[i] = (int *) realloc(m->values[i], m->nRows * sizeof(int));
+
+    for (int i = 0; i < max; ++i)
+        for (int j = i + 1; j < max; ++j)
+            swapUnivers(&m->values[i][j], &m->values[j][i], sizeof(int));
+
+    if (m->nCols > m->nRows)
+        for (int i = 0; i < m->nRows; ++i)
+            m->values[i] = (int *) realloc(m->values[i], m->nRows * sizeof(int));
+    else if (m->nRows > m->nCols)
+        m->values = (int **) realloc(m->values, m->nCols * sizeof(int));
+
+    if (!isSquareMatrix(*m))
+        swapUnivers(&m->nRows, &m->nCols, sizeof(int));
 }
+
 
 //возвращает позицию минимального элемента матрицы m
 position getMinValuePos(matrix m) {

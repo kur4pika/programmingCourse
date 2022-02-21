@@ -55,6 +55,8 @@ bool isSymmetricMatrix(matrix m);// возвращает значение 'ис�
 
 void transposeSquareMatrix(matrix m);// транспонирует квадратную матрицу m
 
+void transposeMatrix(matrix *m);// транспонирует матрицу m
+
 position getMinValuePos(matrix m);// возвращает позицию минимального элемента матрицы m
 
 void outputPosition(position p);// выводит позицию p

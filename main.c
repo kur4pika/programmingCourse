@@ -776,6 +776,7 @@ float getDistance(int *a, int n) {
     return sqrt(squareDistance);
 }
 
+// сортирует строки матрицы m по значению функции criteria, применяемой для строк по неубыванию
 void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
     float rowsArr[m.nRows];
     for (int i = 0; i < m.nRows; ++i)
@@ -792,6 +793,7 @@ void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, in
     }
 }
 
+// сортирует n точек m-мерного пространства по неубыванию их расстояния от начала координат
 void sortByDistances(matrix m) {
     insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
 }
@@ -863,11 +865,11 @@ void test_sortByDistances_oneCols() {
 }
 
 void test_sortByDistances_oneElem() {
-    matrix m = createMatrixFromArray((int[]) {2},1, 1);
+    matrix m = createMatrixFromArray((int[]) {2}, 1, 1);
 
     sortByDistances(m);
 
-    matrix expectation = createMatrixFromArray((int[]) {2},1, 1);
+    matrix expectation = createMatrixFromArray((int[]) {2}, 1, 1);
 
     assert(areTwoMatricesEqual(m, expectation));
 
@@ -883,6 +885,127 @@ void test_sortByDistances() {
     test_sortByDistances_oneElem();
 }
 
+
+
+// task 8
+
+// возращает минимальный элемент матрицы m в области
+int getMinInArea(matrix m) {
+    int max = m.values[0][0];
+    position maxInArea = {0, 0};
+    for (int i = 0; i < m.nCols; ++i)
+        if (max < m.values[0][i]) {
+            max = m.values[0][i];
+            maxInArea.colIndex = i;
+        }
+
+    for (int i = 1; i < m.nRows; ++i) {
+        for (int j = 0; j < m.nCols; ++j) {
+            if (m.values[i][j] > max) {
+                max = m.values[i][j];
+                maxInArea.rowIndex = i;
+                maxInArea.colIndex = j;
+            }
+
+            if (j == 0 || j == m.nCols - 1) {
+                if (m.nCols == 1)
+                    m.values[i][j] = min(m.values[i - 1][j], m.values[i][j]);
+                else if (j == 0)
+                    m.values[i][j] = min(m.values[i][j], min(m.values[i - 1][j], m.values[i - 1][j + 1]));
+                else
+                    m.values[i][j] = min(m.values[i][j], min(m.values[i - 1][j - 1], m.values[i - 1][j]));
+            } else
+                m.values[i][j] = min(m.values[i][j],
+                                     min3(m.values[i - 1][j - 1], m.values[i - 1][j], m.values[i - 1][j + 1]));
+        }
+
+    }
+    return m.values[maxInArea.rowIndex][maxInArea.colIndex];
+}
+
+void test_getMinInArea_rectangleMatrixMinInBot() {
+    matrix m = createMatrixFromArray((int[]) {10, 7, 5, 6,
+                                              3, 11, 8, 9,
+                                              4, 1, 12, 2}, 3, 4);
+
+    assert(getMinInArea(m) == 5);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea_rectangleMatrixMinInMiddle() {
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 2,
+                                              7, 12, 3, 4,
+                                              10, 11, 5, 1}, 3, 4);
+
+    assert(getMinInArea(m) == 6);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea_rectangleVerticalMatrix_1() {
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 4,
+                                              7, 12, 3, 6,
+                                              10, 11, 5, 15,
+                                              11, 14, 13, 1,
+                                              16, 17, 18, 19}, 5, 4);
+
+    assert(getMinInArea(m) == 1);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea_rectangleVerticalMatrix_2() {
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 4,
+                                              7, 12, 3, 6,
+                                              10, 14, 5, 11,
+                                              11, 1, 13, 15,
+                                              16, 17, 18, 20}, 5, 4);
+
+    assert(getMinInArea(m) == 3);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {6}, 1, 1);
+
+    assert(getMinInArea(m) == 6);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea_oneRow() {
+    matrix m = createMatrixFromArray((int[]) {6,
+                                              2,
+                                              8,
+                                              1,
+                                              7}, 5, 1);
+
+    assert(getMinInArea(m) == 2);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea_oneCol() {
+    matrix m = createMatrixFromArray((int[]) {6, 2, 8, 1, 7}, 1, 5);
+
+    assert(getMinInArea(m) == 8);
+
+    freeMemMatrix(m);
+}
+
+void test_getMinInArea() {
+    test_getMinInArea_rectangleMatrixMinInBot();
+    test_getMinInArea_rectangleMatrixMinInMiddle();
+    test_getMinInArea_rectangleVerticalMatrix_1();
+    test_getMinInArea_rectangleVerticalMatrix_2();
+    test_getMinInArea_oneElem();
+    test_getMinInArea_oneRow();
+    test_getMinInArea_oneCol();
+
+}
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
@@ -891,6 +1014,7 @@ void test_pt2() {
     test_transposeIfMatrixHasNotEqualSumOfRows();
     test_isMutuallyInverseMatrices();
     test_sortByDistances();
+    test_getMinInArea();
 }
 
 int main() {
