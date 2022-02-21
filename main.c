@@ -2,9 +2,11 @@
 #include <stdint.h>
 #include "libs/data_structures/matrix/matrix.h"
 #include "libs/algorithms/array/array.h"
+#include "libs/algorithms/algorithms.h"
 #include <assert.h>
 #include <stdbool.h>
 #include <stdlib.h>
+#include <math.h>
 
 #define EXIT_CODE 1
 #define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
@@ -385,7 +387,7 @@ int getMin(const int *a, const size_t n) {
     return min;
 }
 
-//упорядочивает строки матрицы m по неубыванию наибольших элементов столбцов
+//упорядочивает строки матрицы m по неубыванию минимальных элементов столбцов
 void sortColsByMinElement(matrix m) {
     insertionSortMatrixByCriteria(&m, getMin, COLS);
 }
@@ -594,7 +596,7 @@ void test_getSquareOfMatrixIfSymmetric() {
 
 
 
-//task 5
+// task 5
 
 //возвращает значение 'истина', если элементы массива а размера n уникальны, иначе - 'ложь'
 bool isUnique(long long *a, int n) {
@@ -679,37 +681,23 @@ void test_transposeIfMatrixHasNotEqualSumOfRows_hasNotEqualSum() {
     freeMemMatrix(expectation);
 }
 
-void test_transposeIfMatrixHasNotEqualSumOfRows_lastsSumIsEqual() {
-    matrix m = createMatrixFromArray((int[]) {3, 1, 3,
-                                              1, 8, 1,
-                                              7, 1, 2}, 3, 3);
-
-    transposeIfMatrixHasNotEqualSumOfRows(m);
-
-    matrix expectation = createMatrixFromArray((int[]) {3, 1, 3,
-                                                        1, 8, 1,
-                                                        7, 1, 2}, 3, 3);
-
-    assert(areTwoMatricesEqual(m, expectation));
-
-    freeMemMatrix(m);
-    freeMemMatrix(expectation);
-}
-
 void test_transposeIfMatrixHasNotEqualSumOfRows() {
     test_transposeIfMatrixHasNotEqualSumOfRows_oneElem();
     test_transposeIfMatrixHasNotEqualSumOfRows_hasEqualSum();
     test_transposeIfMatrixHasNotEqualSumOfRows_hasNotEqualSum();
-    test_transposeIfMatrixHasNotEqualSumOfRows_lastsSumIsEqual();
 }
 
 
-
-//task 6
+// task 6
 
 //возвращает значение 'истина', если матрицы m1 и m2 являются взаимно обратными
 bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
-    return isEMatrix(mulMatrices(m1, m2));
+    matrix mulMatrix = mulMatrices(m1, m2);
+    bool isMutuallyInverse = isEMatrix(mulMatrix);
+
+    free(mulMatrix.values);
+    return isMutuallyInverse;
+
 }
 
 void test_isMutuallyInverseMatrices_matrix2x2ProduceIsEMatrix() {
@@ -776,6 +764,125 @@ void test_isMutuallyInverseMatrices() {
 }
 
 
+
+// task 9
+
+//возвращает квадратный корень из суммы квадратов элементов массива а размера n
+float getDistance(int *a, int n) {
+    int squareDistance = 0;
+    for (int i = 0; i < n; i++)
+        squareDistance += a[i] * a[i];
+
+    return sqrt(squareDistance);
+}
+
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
+    float rowsArr[m.nRows];
+    for (int i = 0; i < m.nRows; ++i)
+        rowsArr[i] = criteria(m.values[i], m.nCols);
+
+    for (int i = 1; i < m.nRows; ++i) {
+        int k = i;
+        while (k > 0 && rowsArr[k - 1] >= rowsArr[k]) {
+            swapUniversal(&rowsArr[k - 1], &rowsArr[k], sizeof(float));
+            swapRows(m, k - 1, k);
+
+            k--;
+        }
+    }
+}
+
+void sortByDistances(matrix m) {
+    insertionSortRowsMatrixByRowCriteriaF(m, getDistance);
+}
+
+void test_sortByDistances_somePoints() {
+    matrix m = createMatrixFromArray((int[]) {6, 8, 9, 2,
+                                              10, 11, 5, 1,
+                                              7, 12, 3, 4}, 3, 4);
+
+    sortByDistances(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {6, 8, 9, 2,
+                                                        7, 12, 3, 4,
+                                                        10, 11, 5, 1}, 3, 4);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortByDistances_somePoints2() {
+    matrix m = createMatrixFromArray((int[]) {8, 9, 10, 11,
+                                              0, 1, 2, 3,
+                                              4, 5, 6, 7}, 3, 4);
+
+    sortByDistances(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {0, 1, 2, 3,
+                                                        4, 5, 6, 7,
+                                                        8, 9, 10, 11,}, 3, 4);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortByDistances_oneRow() {
+    matrix m = createMatrixFromArray((int[]) {8, 9, 10, 11,}, 1, 4);
+
+    sortByDistances(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {8, 9, 10, 11}, 1, 4);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortByDistances_oneCols() {
+    matrix m = createMatrixFromArray((int[]) {11,
+                                              9,
+                                              10,
+                                              2}, 4, 1);
+
+    sortByDistances(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {2,
+                                                        9,
+                                                        10,
+                                                        11}, 4, 1);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortByDistances_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {2},1, 1);
+
+    sortByDistances(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {2},1, 1);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_sortByDistances() {
+    test_sortByDistances_somePoints();
+    test_sortByDistances_somePoints2();
+    test_sortByDistances_oneRow();
+    test_sortByDistances_oneCols();
+    test_sortByDistances_oneElem();
+}
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
@@ -783,6 +890,7 @@ void test_pt2() {
     test_getSquareOfMatrixIfSymmetric();
     test_transposeIfMatrixHasNotEqualSumOfRows();
     test_isMutuallyInverseMatrices();
+    test_sortByDistances();
 }
 
 int main() {

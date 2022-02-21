@@ -39,9 +39,9 @@ void swapRows(matrix m, int i1, int i2);// обмен строк с порядк
 
 void swapColumns(matrix m, int j1, int j2);// обмен колонок с порядковыми номерами j1 и j2 в матрице m
 
-void insertionSortMatrixByCriteria(matrix *m, int (criteria)(int [], int), bool rowsOrCols);// выполняет сортировку вставками строк
+void insertionSortMatrixByCriteria(matrix *m, int (criteria)(int [], int), bool rowsOrCols);// выполняет сортировку вставками строк(столбцов)
                                                                                  // матрицы m по неубыванию значения функции
-                                                                                 // criteria применяемой для строк
+                                                                                 // criteria применяемой для строк(столбцов)
 
 bool isSquareMatrix(matrix m);// возвращает значение 'истина', если матрица m
                               // является квадратной, 'ложь' – в противном случае
@@ -70,5 +70,7 @@ matrix *createArrayOfMatrixFromArray(const int *values, size_t nMatrices, size_t
 // построенных из элементов массива a
 
 bool twoPositionIsEqual(position p1, position p2);// возвращает значение 'истина', если позиции равны, иначе - 'ложь'
+
+void transposeMatrix(matrix *m);
 
 #endif //MAIN_C_MATRIX_H

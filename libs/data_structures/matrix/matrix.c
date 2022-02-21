@@ -1,6 +1,7 @@
 #include "matrix.h"
 #include <malloc.h>
 #include <stdio.h>
+#include <mem.h>
 
 #define EXIT_CODE 1
 
@@ -67,7 +68,7 @@ void outputMatrices(matrix *ms, const int nMatrices) {
         outputMatrix(ms[i]);
 }
 
-void swapUniversal(void *a, void *b, const size_t baseSizeType) {
+void swapUnivers(void *a, void *b, const size_t baseSizeType) {
     char *pa = a;
     char *pb = b;
     for (size_t i = 0; i < baseSizeType; i++) {
@@ -85,7 +86,7 @@ void swapRows(matrix m, const int i1, const int i2) {
         throwExceptionBadIndex();
     }
 
-    swapUniversal(&m.values[i1], &m.values[i2], sizeof(int));
+    swapUnivers(&m.values[i1], &m.values[i2], sizeof(int));
 }
 
 // обмен колонок с порядковыми номерами j1 и j2 в матрице m
@@ -95,17 +96,17 @@ void swapColumns(matrix m, const int j1, const int j2) {
     }
 
     for (int i = 0; i < m.nRows; i++) {
-        swapUniversal(&m.values[i][j1], &m.values[i][j2], sizeof(int));
+        swapUnivers(&m.values[i][j1], &m.values[i][j2], sizeof(int));
     }
 }
 
-// выполняет сортировку вставками строк
-// матрицы m по неубыванию значения функции criteria применяемой для строк
+// выполняет сортировку вставками строк(столбцов) матрицы m по неубыванию значения функции
+// criteria применяемой для строк(столбцов)
 void insertionSortMatrix(int a[], matrix *m, void (f)(matrix, int, int), const int rowsOrCols){
     for (int i = 1; i < rowsOrCols; ++i) {
         int k = i;
         while (k > 0 && a[k - 1] >= a[k]){
-            swapUniversal(&a[k - 1], &a[k], sizeof(int));
+            swapUnivers(&a[k - 1], &a[k], sizeof(int));
             f(*m, k - 1, k);
 
             k--;
@@ -140,30 +141,16 @@ bool isSquareMatrix(matrix m) {
     return m.nRows == m.nCols;
 }
 
-//возвращает значение 'истина', если два массива равны, иначе - 'ложь'
-bool twoArrayEqual(const int *a, const size_t sizeA, const int *b, const size_t sizeB) {
-    if (sizeA != sizeB)
-        return false;
-
-    int count = 0;
-    for (int i = 0; i < sizeA; i++)
-        if (a[i] == b[i])
-            count++;
-
-    return count == sizeA;
-}
-
 //возвращает значение 'истина', если матрицы m1 и m2 равны, 'ложь' – в противном случае
 bool areTwoMatricesEqual(matrix m1, matrix m2) {
     if (m1.nRows != m2.nRows || m1.nCols != m2.nCols)
         return false;
 
-    int count = 0;
     for (int i = 0; i < m1.nRows; i++)
-        if (twoArrayEqual(m1.values[i], m1.nCols, m2.values[i], m2.nCols))
-            count++;
+        if (memcmp(m1.values[i], m2.values[i], sizeof(int) * m1.nCols) != 0)
+            return false;
 
-    return count == m1.nRows;
+    return true;
 }
 
 //возвращает значение 'истина', если матрица m является единичной, 'ложь' – в противном случае
@@ -212,8 +199,12 @@ void transposeSquareMatrix(matrix m) {
     if (isSquareMatrix(m)) {
         for (size_t i = 0; i < m.nRows; i++)
             for (size_t j = i + 1; j < m.nCols; j++)
-                swapUniversal(&m.values[i][j], &m.values[j][i], sizeof(int));
+                swapUnivers(&m.values[i][j], &m.values[j][i], sizeof(int));
     }
+}
+
+void transposeMatrix(matrix *m) {
+    //TODO: реализовать универсальное транспонирование
 }
 
 //возвращает позицию минимального элемента матрицы m
