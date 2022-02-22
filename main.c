@@ -1248,13 +1248,114 @@ void test_getNSpecialElement_oneCol() {
     freeMemMatrix(m);
 }
 
-
 void test_getNSpecialElement() {
     test_getNSpecialElement_rectangleMatrix();
     test_getNSpecialElement_rectangleMatrixHasNotSpecial();
     test_getNSpecialElement_allElementsEqual();
     test_getNSpecialElement_oneRow();
     test_getNSpecialElement_oneCol();
+}
+
+
+
+// task 12
+
+// возвращает позицию минимального элемента
+position getLeftMin(matrix m) {
+    position min = {0, 0};
+    for (size_t j = 0; j < m.nCols; j++)
+            for (size_t i = 0; i < m.nRows; i++)
+            if (m.values[i][j] < m.values[min.rowIndex][min.colIndex]) {
+                min.rowIndex = i;
+                min.colIndex = j;
+            }
+
+    return min;
+}
+
+// заменяет предпоследнюю строку матрицы m на первый из столбцов, содержащий минимальный элемент
+void swapPenultimateRow(matrix m) {
+    position min = getLeftMin(m);
+
+    int colWithMin[m.nRows];
+    for (int i = 0; i < m.nRows; i++)
+        colWithMin[i] = m.values[i][min.colIndex];
+
+    for (int i = 0; i < m.nCols; i++)
+        m.values[m.nRows - 2][i] = colWithMin[i];
+}
+
+void test_swapPenultimateRow_squareMatrix() {
+    matrix m = createMatrixFromArray((int[]) {1, 2, 3,
+                                              4, 5, 6,
+                                              7, 8, 1,}, 3, 3);
+
+    swapPenultimateRow(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {1, 2, 3,
+                                                        1, 4, 7,
+                                                        7, 8, 1,}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_swapPenultimateRow_twoRows() {
+    matrix m = createMatrixFromArray((int[]) {1, 2,
+                                              4, 5}, 2, 2);
+
+    swapPenultimateRow(m);
+
+    matrix m2 = createMatrixFromArray((int[]) {1, 4,
+                                               4, 5}, 2, 2);
+
+    assert(areTwoMatricesEqual(m, m2));
+
+    freeMemMatrix(m);
+    freeMemMatrix(m2);
+}
+
+void test_swapPenultimateRow_someMinimums() {
+    matrix m = createMatrixFromArray((int[]) {4, 2, 1,
+                                              4, 5, 4,
+                                              1, 6, 7}, 3, 3);
+
+    swapPenultimateRow(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {4, 2, 1,
+                                                        4, 4, 1,
+                                                        1, 6, 7}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_swapPenultimateRow_EMatrix() {
+    matrix m = createMatrixFromArray((int[]) {1, 0, 0,
+                                              0, 1, 0,
+                                              0, 0, 1}, 3, 3);
+
+    swapPenultimateRow(m);
+
+    matrix expectation = createMatrixFromArray((int[]) {1, 0, 0,
+                                                        1, 0, 0,
+                                                        0, 0, 1}, 3, 3);
+
+    assert(areTwoMatricesEqual(m, expectation));
+
+    freeMemMatrix(m);
+    freeMemMatrix(expectation);
+}
+
+void test_swapPenultimateRow() {
+    test_swapPenultimateRow_squareMatrix();
+    test_swapPenultimateRow_twoRows();
+    test_swapPenultimateRow_someMinimums();
+    test_swapPenultimateRow_EMatrix();
 }
 
 void test_pt2() {
@@ -1269,6 +1370,7 @@ void test_pt2() {
     test_findSumOfMaxesOfPseudoDiagonal();
     test_countEqClassesByRowsSum();
     test_getNSpecialElement();
+    test_swapPenultimateRow();
 }
 
 int main() {

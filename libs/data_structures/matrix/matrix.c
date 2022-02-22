@@ -243,10 +243,10 @@ position getMinValuePos(matrix m) {
 }
 
 // выводит позицию p
-//void outputPosition(position p) {
-//    printf("{%d, ", p.rowIndex);
-//    printf("%d}", p.colIndex);
-//}
+void outputPosition(position p) {
+    printf("{%d, ", p.rowIndex);
+    printf("%d}", p.colIndex);
+}
 
 // возвращает позицию максимального элемента матрицы m
 position getMaxValuePos(matrix m) {
