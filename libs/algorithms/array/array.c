@@ -2,6 +2,7 @@
 #include <stdio.h>
 #include <limits.h>
 #include <assert.h>
+#include <stdlib.h>
 
 #define EXIT_CODE 1
 #define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
@@ -48,7 +49,7 @@ void deleteByPosUnsaveOrder_(int *a, size_t *n, size_t pos) {
     (*n)--;
 }
 
-size_t linearSearch_(const int *a, const size_t n, int x) {
+size_t linearSearch_(const long long *a, const size_t n, long long x) {
     for (size_t i = 0; i < n; i++)
         if (a[i] == x)
             return i;
@@ -143,6 +144,7 @@ void universSwap(void *a, void *b, const size_t baseSizeType) {
         pb++;
     }
 }
+
 void selectionSort(const long long *a, const int size) {
     for (int i = 0; i < size - 1; i++) {
         long long minPos = i;
@@ -151,6 +153,33 @@ void selectionSort(const long long *a, const int size) {
                 minPos = j;
         universSwap(&a[i], &a[minPos], sizeof(long long));
     }
+}
+
+int cmp_long_long(const void *pa, const void *pb) {
+    long long arg1 = *(const long long *) pa;
+    long long arg2 = *(const long long *) pb;
+
+    if (arg1 < arg2)
+        return -1;
+    if (arg1 > arg2)
+        return 1;
+    return 0;
+}
+
+int countNUnique(long long *a, int *n) {
+    if (n == 1)
+        return 1;
+
+    qsort(a, n, sizeof(long long), cmp_long_long);
+
+    int counterOfUnique = 1;
+    int i = 1;
+    while (i < n) {
+        if (a[i] != a[i - 1])
+            counterOfUnique++;
+        i++;
+    }
+    return counterOfUnique;
 }
 
 //возвращает индекст максимального элемента массива а размера n

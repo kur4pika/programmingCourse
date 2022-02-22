@@ -11,7 +11,7 @@ void outputArray_(const int *a, size_t n);
 
 // возвращает значение первого вхождения элемента x
 // в массиве a размера n при его наличии, иначе - n
-size_t linearSearch_(const int *a, size_t n, int x);
+size_t linearSearch_(const long long *a, size_t n, long long x);
 
 // возвращает позицию вхождения элемента x
 // в отсортированном массиве a размера n при его наличии, иначе - SIZE_MAX
@@ -66,5 +66,9 @@ void deleteIf_(int *a, size_t *n, int (*deletePredicate )(int));
 void selectionSort(const long long *a, int size);
 
 int getMax(const int *a, size_t n);
+
+void deleteNUnique(long long *a, size_t *n);
+
+int countNUnique(long long *a, int *n);
 
 #endif //MAIN_C_ARRAY_H

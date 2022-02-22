@@ -1111,6 +1111,77 @@ void test_findSumOfMaxesOfPseudoDiagonal() {
 
 }
 
+
+
+// task 10
+
+// возвращает количество эквивалентных строк матрицы m
+int countEqClassesByRowsSum(const matrix m) {
+    long long rowSums[m.nRows];
+    for (int i = 0; i < m.nRows; i++)
+        rowSums[i] = getSum(m.values[i], m.nCols);
+
+    return countNUnique(rowSums, m.nRows);
+}
+
+void test_countEqClassesByRowsSum_verticalMatrix() {
+    matrix m = createMatrixFromArray((int[]) {7, 1,
+                                              2, 7,
+                                              5, 4,
+                                              4, 3,
+                                              1, 6,
+                                              8, 0}, 6, 2);
+
+    assert(countEqClassesByRowsSum(m) == 3);
+
+    freeMemMatrix(m);
+}
+
+void test_countEqClassesByRowsSum_horizontalMatrix() {
+    matrix m = createMatrixFromArray((int[]) {7, 1, 2, 7,
+                                              5, 4, 4, 4,
+                                              1, 6, 8, 2}, 3, 4);
+
+    assert(countEqClassesByRowsSum(m) == 1);
+
+    freeMemMatrix(m);
+}
+
+void test_countEqClassesByRowsSum_oneRow() {
+    matrix m = createMatrixFromArray((int[]) {7, 1, 2, 7,}, 1, 4);
+
+    assert(countEqClassesByRowsSum(m) == 1);
+
+    freeMemMatrix(m);
+}
+
+void test_countEqClassesByRowsSum_oneCol() {
+    matrix m = createMatrixFromArray((int[]) {7, 1, 2, 7,}, 1, 4);
+
+    assert(countEqClassesByRowsSum(m) == 1);
+
+    freeMemMatrix(m);
+}
+
+void test_countEqClassesByRowsSum_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {7}, 1, 1);
+
+    assert(countEqClassesByRowsSum(m) == 1);
+
+    freeMemMatrix(m);
+}
+
+void test_countEqClassesByRowsSum() {
+    test_countEqClassesByRowsSum_verticalMatrix();
+    test_countEqClassesByRowsSum_horizontalMatrix();
+    test_countEqClassesByRowsSum_oneRow();
+    test_countEqClassesByRowsSum_oneCol();
+    test_countEqClassesByRowsSum_oneElem();
+
+}
+
+
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
@@ -1121,11 +1192,13 @@ void test_pt2() {
     test_sortByDistances();
     test_getMinInArea();
     test_findSumOfMaxesOfPseudoDiagonal();
+    test_countEqClassesByRowsSum();
 }
 
 int main() {
     test_pt1();
     test_pt2();
+
 
     return 0;
 }
