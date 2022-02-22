@@ -1182,6 +1182,81 @@ void test_countEqClassesByRowsSum() {
 
 
 
+// task 11
+
+// возвращает количетво элементов матрицы m, которые больше суммы остальных элементов своего столбца
+int getNSpecialElement(matrix m) {
+    transposeMatrix(&m);
+    int counterNSpecialElement = 0;
+    for (int i = 0; i < m.nRows; ++i) {
+        int maxInRow = getMax(m.values[i], m.nCols);
+        if (getSum(m.values[i], m.nCols) - maxInRow < maxInRow)
+            counterNSpecialElement++;
+    }
+
+    return counterNSpecialElement;
+}
+
+void test_getNSpecialElement_rectangleMatrix() {
+    matrix m = createMatrixFromArray((int[]) {3, 5, 5, 4,
+                                              2, 3, 6, 7,
+                                              12, 2, 1, 2}, 3, 4);
+
+    assert(getNSpecialElement(m) == 2);
+
+    freeMemMatrix(m);
+}
+
+void test_getNSpecialElement_rectangleMatrixHasNotSpecial() {
+    matrix m = createMatrixFromArray((int[]) {3, 5, 5, 4,
+                                              2, 3, 6, 4,
+                                              1, 2, 1, 2}, 3, 4);
+
+    assert(getNSpecialElement(m) == 0);
+
+    freeMemMatrix(m);
+}
+
+void test_getNSpecialElement_allElementsEqual() {
+    matrix m = createMatrixFromArray((int[]) {5, 5, 5,
+                                              5, 5, 5,
+                                              5, 5, 5,
+                                              5, 5, 5}, 4, 3);
+
+    assert(getNSpecialElement(m) == 0);
+
+    freeMemMatrix(m);
+}
+
+void test_getNSpecialElement_oneRow() {
+    matrix m = createMatrixFromArray((int[]) {1,
+                                              2,
+                                              3,
+                                              7}, 4, 1);
+
+    assert(getNSpecialElement(m) == 1);
+
+    freeMemMatrix(m);
+}
+
+void test_getNSpecialElement_oneCol() {
+    matrix m = createMatrixFromArray(
+            (int[]) {1, 2, 3, 7}, 1, 4);
+
+    assert(getNSpecialElement(m) == 4);
+
+    freeMemMatrix(m);
+}
+
+
+void test_getNSpecialElement() {
+    test_getNSpecialElement_rectangleMatrix();
+    test_getNSpecialElement_rectangleMatrixHasNotSpecial();
+    test_getNSpecialElement_allElementsEqual();
+    test_getNSpecialElement_oneRow();
+    test_getNSpecialElement_oneCol();
+}
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
@@ -1193,6 +1268,7 @@ void test_pt2() {
     test_getMinInArea();
     test_findSumOfMaxesOfPseudoDiagonal();
     test_countEqClassesByRowsSum();
+    test_getNSpecialElement();
 }
 
 int main() {
