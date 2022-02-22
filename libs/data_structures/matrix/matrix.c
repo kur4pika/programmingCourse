@@ -295,4 +295,20 @@ bool twoPositionIsEqual(position p1, position p2) {
     return true;
 }
 
+// сортирует строки матрицы m по значению функции criteria, применяемой для строк по неубыванию
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
+    float rowsArr[m.nRows];
+    for (int i = 0; i < m.nRows; ++i)
+        rowsArr[i] = criteria(m.values[i], m.nCols);
+
+    for (int i = 1; i < m.nRows; ++i) {
+        int k = i;
+        while (k > 0 && rowsArr[k - 1] >= rowsArr[k]) {
+            swapUnivers(&rowsArr[k - 1], &rowsArr[k], sizeof(float));
+            swapRows(m, k - 1, k);
+
+            k--;
+        }
+    }
+}
 

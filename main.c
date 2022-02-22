@@ -484,7 +484,7 @@ void test_sortColsByMinElement() {
 // task 4
 
 // возвращает матрицу m1 * m2
-matrix mulMatrices(matrix m1, matrix m2) {
+matrix mulMatrices(const matrix m1, const matrix m2) {
     matrix product = getMemMatrix(m1.nRows, m2.nCols);
 
     for (int i = 0; i < m1.nRows; ++i) {
@@ -599,7 +599,7 @@ void test_getSquareOfMatrixIfSymmetric() {
 // task 5
 
 //возвращает значение 'истина', если элементы массива а размера n уникальны, иначе - 'ложь'
-bool isUnique(long long *a, int n) {
+bool isUnique(const long long *a, const int n) {
     bool isUnique = true;
 
     selectionSort(a, n);
@@ -615,7 +615,7 @@ bool isUnique(long long *a, int n) {
 }
 
 // возвращает сумму элементов массива a размера n
-long long getSum(int *a, int n) {
+long long getSum(const int *a, const int n) {
     long long sum = 0;
     for (int i = 0; i < n; i++)
         sum += a[i];
@@ -691,7 +691,7 @@ void test_transposeIfMatrixHasNotEqualSumOfRows() {
 // task 6
 
 //возвращает значение 'истина', если матрицы m1 и m2 являются взаимно обратными
-bool isMutuallyInverseMatrices(matrix m1, matrix m2) {
+bool isMutuallyInverseMatrices(const matrix m1, const matrix m2) {
     matrix mulMatrix = mulMatrices(m1, m2);
     bool isMutuallyInverse = isEMatrix(mulMatrix);
 
@@ -768,29 +768,12 @@ void test_isMutuallyInverseMatrices() {
 // task 9
 
 //возвращает квадратный корень из суммы квадратов элементов массива а размера n
-float getDistance(int *a, int n) {
+float getDistance(const int *a, const int n) {
     int squareDistance = 0;
     for (int i = 0; i < n; i++)
         squareDistance += a[i] * a[i];
 
     return sqrt(squareDistance);
-}
-
-// сортирует строки матрицы m по значению функции criteria, применяемой для строк по неубыванию
-void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int)) {
-    float rowsArr[m.nRows];
-    for (int i = 0; i < m.nRows; ++i)
-        rowsArr[i] = criteria(m.values[i], m.nCols);
-
-    for (int i = 1; i < m.nRows; ++i) {
-        int k = i;
-        while (k > 0 && rowsArr[k - 1] >= rowsArr[k]) {
-            swapUniversal(&rowsArr[k - 1], &rowsArr[k], sizeof(float));
-            swapRows(m, k - 1, k);
-
-            k--;
-        }
-    }
 }
 
 // сортирует n точек m-мерного пространства по неубыванию их расстояния от начала координат
@@ -890,7 +873,7 @@ void test_sortByDistances() {
 // task 8
 
 // возращает минимальный элемент матрицы m в области
-int getMinInArea(matrix m) {
+int getMinInArea(const matrix m) {
     int max = m.values[0][0];
     position maxInArea = {0, 0};
     for (int i = 0; i < m.nCols; ++i)
@@ -1006,6 +989,128 @@ void test_getMinInArea() {
 
 }
 
+
+
+// task 7
+
+// возращает значение максимума псевдодиагонали матрицы m, состоящей из n элементов,
+// первый элемент которой имеет позицию [countRows][countCols]
+long long findMaxOfPseudoDiagonal(const matrix m, const int countRows, const int countCols, const int n) {
+    int maxInDiagonal = m.values[countRows][countCols];
+    for (int i = 0; i < n; ++i)
+        if (maxInDiagonal < m.values[countRows + i][countCols + i])
+            maxInDiagonal = m.values[countRows + i][countCols + i];
+
+    return maxInDiagonal;
+}
+
+// возращает сумму максимумов псевдодиагоналей матрицы m
+long long findSumOfMaxesOfPseudoDiagonal(const matrix m) {
+    long long sumOfMaxesOfPseudoDiagonal = 0;
+
+    int kRows = 1;
+    int kCols = 1;
+    int countRows = m.nRows - 1;
+    int countCols = m.nCols - 1;
+    while (countRows || countCols) {
+        if (countRows) {
+            sumOfMaxesOfPseudoDiagonal += findMaxOfPseudoDiagonal(m, countRows, 0, kRows);
+            countRows--;
+        }
+        if (countCols) {
+            sumOfMaxesOfPseudoDiagonal += findMaxOfPseudoDiagonal(m, 0, countCols, kCols);
+            countCols--;
+        }
+
+        if (kRows + 1 <= m.nCols)
+            kRows++;
+        if (kCols + 1 <= m.nRows)
+            kCols++;
+    }
+
+    return sumOfMaxesOfPseudoDiagonal;
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_positiveNotSquareMatrix() {
+    matrix m1 = createMatrixFromArray((int[]) {3, 2, 5, 4,
+                                               1, 3, 6, 3,
+                                               3, 2, 1, 2}, 3, 4);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m1) == 20);
+
+    freeMemMatrix(m1);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_negativeNotSquareMatrix() {
+    matrix m = createMatrixFromArray((int[]) {-3, -2, -5, -4,
+                                              -1, -3, -6, -3,
+                                              -3, -2, -1, -2}, 3, 4);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m) == -3 + -1 + -2 + -3 + -4);
+
+    freeMemMatrix(m);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_positiveSquareMatrix() {
+    matrix m = createMatrixFromArray((int[]) {3, 1, 3,
+                                              1, 8, 1,
+                                              7, 1, 2,}, 3, 3);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m) == 7 + 1 + 1 + 3);
+
+    freeMemMatrix(m);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_negativeSquareMatrix() {
+    matrix m = createMatrixFromArray((int[]) {-3, -1, -3,
+                                              -1, -8, -1,
+                                              -7, -1, -2,}, 3, 3);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m) == -7 + -1 + -1 + -3);
+
+    freeMemMatrix(m);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_oneCol() {
+    matrix m = createMatrixFromArray((int[]) {-3,
+                                              1,
+                                              -7,
+                                              4,
+                                              -1,
+                                              6}, 6, 1);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m) == 1 + -7 + 4 + -1 + 6);
+
+    freeMemMatrix(m);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_oneRow() {
+    matrix m = createMatrixFromArray((int[]) {-3, 1, -7, 4, -1, 6}, 1, 6);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m) == 1 + -7 + 4 + -1 + 6);
+
+    freeMemMatrix(m);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal_oneElem() {
+    matrix m = createMatrixFromArray((int[]) {-3}, 1, 1);
+
+    assert(findSumOfMaxesOfPseudoDiagonal(m) == 0);
+
+    freeMemMatrix(m);
+}
+
+void test_findSumOfMaxesOfPseudoDiagonal() {
+    test_findSumOfMaxesOfPseudoDiagonal_positiveNotSquareMatrix();
+    test_findSumOfMaxesOfPseudoDiagonal_negativeNotSquareMatrix();
+    test_findSumOfMaxesOfPseudoDiagonal_oneRow();
+    test_findSumOfMaxesOfPseudoDiagonal_oneCol();
+    test_findSumOfMaxesOfPseudoDiagonal_oneElem();
+    test_findSumOfMaxesOfPseudoDiagonal_negativeSquareMatrix();
+    test_findSumOfMaxesOfPseudoDiagonal_positiveSquareMatrix();
+
+}
+
 void test_pt2() {
     test_swapRowsWithMinAndMaxElement();
     test_sortRowsByMinElement();
@@ -1015,6 +1120,7 @@ void test_pt2() {
     test_isMutuallyInverseMatrices();
     test_sortByDistances();
     test_getMinInArea();
+    test_findSumOfMaxesOfPseudoDiagonal();
 }
 
 int main() {

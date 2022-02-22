@@ -75,4 +75,6 @@ bool twoPositionIsEqual(position p1, position p2);// возвращает зна
 
 void transposeMatrix(matrix *m);
 
+void insertionSortRowsMatrixByRowCriteriaF(matrix m, float (*criteria)(int *, int));
+
 #endif //MAIN_C_MATRIX_H
