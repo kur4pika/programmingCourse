@@ -10,6 +10,9 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.c" "C:/CLionProjects/untitled3/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj"
   "C:/CLionProjects/untitled3/libs/data_structures/string/string.c" "C:/CLionProjects/untitled3/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/string/string.c.obj"
+  "C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.c" "C:/CLionProjects/untitled3/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj"
+  "C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.c" "C:/CLionProjects/untitled3/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj"
+  "C:/CLionProjects/untitled3/libs/data_structures/string/test_functions/test_functions.c" "C:/CLionProjects/untitled3/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj"
   "C:/CLionProjects/untitled3/libs/data_structures/vector/vector.c" "C:/CLionProjects/untitled3/cmake-build-debug/libs/data_structures/CMakeFiles/data_structures.dir/vector/vector.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

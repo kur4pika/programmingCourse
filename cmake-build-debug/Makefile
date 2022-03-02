@@ -129,19 +129,6 @@ untitled3/fast:
 .PHONY : untitled3/fast
 
 #=============================================================================
-# Target rules for targets named project
-
-# Build rule for target.
-project: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 project
-.PHONY : project
-
-# fast build rule for target.
-project/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/build
-.PHONY : project/fast
-
-#=============================================================================
 # Target rules for targets named data_structures
 
 # Build rule for target.
@@ -269,7 +256,6 @@ main.obj: main.c.obj
 # target to build an object file
 main.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/main.c.obj
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -278,7 +264,6 @@ main.i: main.c.i
 # target to preprocess a source file
 main.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/main.c.i
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -287,7 +272,6 @@ main.s: main.c.s
 # target to generate assembly for a file
 main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/main.c.s
-	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -300,7 +284,6 @@ help:
 	@echo ... rebuild_cache
 	@echo ... algorithms
 	@echo ... data_structures
-	@echo ... project
 	@echo ... untitled3
 	@echo ... libs/algorithms/algorithms.obj
 	@echo ... libs/algorithms/algorithms.i

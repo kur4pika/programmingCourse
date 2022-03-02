@@ -7,6 +7,19 @@ libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj: \
 libs/data_structures/CMakeFiles/data_structures.dir/string/string.c.obj: \
  ../libs/data_structures/string/string.c \
  ../libs/data_structures/string/string.h
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj: \
+ ../libs/data_structures/string/string.h \
+ ../libs/data_structures/string/tasks/tasks.c \
+ ../libs/data_structures/string/tasks/tasks.h
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj: \
+ ../libs/data_structures/string/string.h \
+ ../libs/data_structures/string/tasks/tasks.h \
+ ../libs/data_structures/string/tasks/test_tasks/test_tasks.c \
+ ../libs/data_structures/string/tasks/test_tasks/test_tasks.h
+libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj: \
+ ../libs/data_structures/string/string.h \
+ ../libs/data_structures/string/test_functions/test_functions.c \
+ ../libs/data_structures/string/test_functions/test_functions.h
 libs/data_structures/CMakeFiles/data_structures.dir/vector/vector.c.obj: \
  ../libs/data_structures/vector/vector.c \
  ../libs/data_structures/vector/vector.h

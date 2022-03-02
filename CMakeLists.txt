@@ -9,6 +9,3 @@ add_subdirectory(libs)
 target_link_libraries(untitled3 data_structures)
 target_link_libraries(untitled3 algorithms)
 
-add_executable(project main.c)
-
-target_link_libraries(project str)

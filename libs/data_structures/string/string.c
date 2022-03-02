@@ -99,3 +99,11 @@ char *copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDesti
 
     return beginDestination;
 }
+
+// возвращает указатель на конец строки s
+char *getEndOfString(char *s) {
+    while (*s != '\0')
+        s++;
+
+    return s;
+}

@@ -104,11 +104,53 @@ libs/data_structures/CMakeFiles/data_structures.dir/string/string.c.s: cmake_for
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/string/string.c.s"
 	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\data_structures\string\string.c -o CMakeFiles\data_structures.dir\string\string.c.s
 
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj: libs/data_structures/CMakeFiles/data_structures.dir/flags.make
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj: ../libs/data_structures/string/tasks/tasks.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building C object libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\data_structures.dir\string\tasks\tasks.c.obj -c C:\CLionProjects\untitled3\libs\data_structures\string\tasks\tasks.c
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/data_structures.dir/string/tasks/tasks.c.i"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\CLionProjects\untitled3\libs\data_structures\string\tasks\tasks.c > CMakeFiles\data_structures.dir\string\tasks\tasks.c.i
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/string/tasks/tasks.c.s"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\data_structures\string\tasks\tasks.c -o CMakeFiles\data_structures.dir\string\tasks\tasks.c.s
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj: libs/data_structures/CMakeFiles/data_structures.dir/flags.make
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj: ../libs/data_structures/string/tasks/test_tasks/test_tasks.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building C object libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\data_structures.dir\string\tasks\test_tasks\test_tasks.c.obj -c C:\CLionProjects\untitled3\libs\data_structures\string\tasks\test_tasks\test_tasks.c
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.i"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\CLionProjects\untitled3\libs\data_structures\string\tasks\test_tasks\test_tasks.c > CMakeFiles\data_structures.dir\string\tasks\test_tasks\test_tasks.c.i
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.s"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\data_structures\string\tasks\test_tasks\test_tasks.c -o CMakeFiles\data_structures.dir\string\tasks\test_tasks\test_tasks.c.s
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj: libs/data_structures/CMakeFiles/data_structures.dir/flags.make
+libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj: ../libs/data_structures/string/test_functions/test_functions.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Building C object libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\data_structures.dir\string\test_functions\test_functions.c.obj -c C:\CLionProjects\untitled3\libs\data_structures\string\test_functions\test_functions.c
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.i"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\CLionProjects\untitled3\libs\data_structures\string\test_functions\test_functions.c > CMakeFiles\data_structures.dir\string\test_functions\test_functions.c.i
+
+libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.s"
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && C:\PROGRA~1\MINGW-~1\X86_64~1.0-P\mingw64\bin\gcc.exe $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\CLionProjects\untitled3\libs\data_structures\string\test_functions\test_functions.c -o CMakeFiles\data_structures.dir\string\test_functions\test_functions.c.s
+
 # Object files for target data_structures
 data_structures_OBJECTS = \
 "CMakeFiles/data_structures.dir/vector/vector.c.obj" \
 "CMakeFiles/data_structures.dir/matrix/matrix.c.obj" \
-"CMakeFiles/data_structures.dir/string/string.c.obj"
+"CMakeFiles/data_structures.dir/string/string.c.obj" \
+"CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj" \
+"CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj" \
+"CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj"
 
 # External object files for target data_structures
 data_structures_EXTERNAL_OBJECTS =
@@ -116,9 +158,12 @@ data_structures_EXTERNAL_OBJECTS =
 libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/vector/vector.c.obj
 libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj
 libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/string/string.c.obj
+libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj
+libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj
+libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj
 libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/build.make
 libs/data_structures/libdata_structures.a: libs/data_structures/CMakeFiles/data_structures.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking C static library libdata_structures.a"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=C:\CLionProjects\untitled3\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_7) "Linking C static library libdata_structures.a"
 	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && $(CMAKE_COMMAND) -P CMakeFiles\data_structures.dir\cmake_clean_target.cmake
 	cd /d C:\CLionProjects\untitled3\cmake-build-debug\libs\data_structures && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles\data_structures.dir\link.txt --verbose=$(VERBOSE)
 

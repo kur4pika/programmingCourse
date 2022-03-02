@@ -14,5 +14,6 @@ CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.obj: \
  ../libs/data_structures/vector/vector.c \
  ../libs/data_structures/vector/vector.h
 CMakeFiles/untitled3.dir/main.c.obj: \
- ../libs/data_structures/string/string.h \
+ ../libs/data_structures/string/tasks/test_tasks/test_tasks.h \
+ ../libs/data_structures/string/test_functions/test_functions.h \
  ../main.c

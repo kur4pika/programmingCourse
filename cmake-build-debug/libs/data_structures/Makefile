@@ -177,6 +177,78 @@ string/string.c.s:
 	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/string.c.s
 .PHONY : string/string.c.s
 
+string/tasks/tasks.obj: string/tasks/tasks.c.obj
+.PHONY : string/tasks/tasks.obj
+
+# target to build an object file
+string/tasks/tasks.c.obj:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.obj
+.PHONY : string/tasks/tasks.c.obj
+
+string/tasks/tasks.i: string/tasks/tasks.c.i
+.PHONY : string/tasks/tasks.i
+
+# target to preprocess a source file
+string/tasks/tasks.c.i:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.i
+.PHONY : string/tasks/tasks.c.i
+
+string/tasks/tasks.s: string/tasks/tasks.c.s
+.PHONY : string/tasks/tasks.s
+
+# target to generate assembly for a file
+string/tasks/tasks.c.s:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/tasks.c.s
+.PHONY : string/tasks/tasks.c.s
+
+string/tasks/test_tasks/test_tasks.obj: string/tasks/test_tasks/test_tasks.c.obj
+.PHONY : string/tasks/test_tasks/test_tasks.obj
+
+# target to build an object file
+string/tasks/test_tasks/test_tasks.c.obj:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.obj
+.PHONY : string/tasks/test_tasks/test_tasks.c.obj
+
+string/tasks/test_tasks/test_tasks.i: string/tasks/test_tasks/test_tasks.c.i
+.PHONY : string/tasks/test_tasks/test_tasks.i
+
+# target to preprocess a source file
+string/tasks/test_tasks/test_tasks.c.i:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.i
+.PHONY : string/tasks/test_tasks/test_tasks.c.i
+
+string/tasks/test_tasks/test_tasks.s: string/tasks/test_tasks/test_tasks.c.s
+.PHONY : string/tasks/test_tasks/test_tasks.s
+
+# target to generate assembly for a file
+string/tasks/test_tasks/test_tasks.c.s:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/tasks/test_tasks/test_tasks.c.s
+.PHONY : string/tasks/test_tasks/test_tasks.c.s
+
+string/test_functions/test_functions.obj: string/test_functions/test_functions.c.obj
+.PHONY : string/test_functions/test_functions.obj
+
+# target to build an object file
+string/test_functions/test_functions.c.obj:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.obj
+.PHONY : string/test_functions/test_functions.c.obj
+
+string/test_functions/test_functions.i: string/test_functions/test_functions.c.i
+.PHONY : string/test_functions/test_functions.i
+
+# target to preprocess a source file
+string/test_functions/test_functions.c.i:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.i
+.PHONY : string/test_functions/test_functions.c.i
+
+string/test_functions/test_functions.s: string/test_functions/test_functions.c.s
+.PHONY : string/test_functions/test_functions.s
+
+# target to generate assembly for a file
+string/test_functions/test_functions.c.s:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\data_structures\CMakeFiles\data_structures.dir\build.make libs/data_structures/CMakeFiles/data_structures.dir/string/test_functions/test_functions.c.s
+.PHONY : string/test_functions/test_functions.c.s
+
 vector/vector.obj: vector/vector.c.obj
 .PHONY : vector/vector.obj
 
@@ -216,6 +288,15 @@ help:
 	@echo ... string/string.obj
 	@echo ... string/string.i
 	@echo ... string/string.s
+	@echo ... string/tasks/tasks.obj
+	@echo ... string/tasks/tasks.i
+	@echo ... string/tasks/tasks.s
+	@echo ... string/tasks/test_tasks/test_tasks.obj
+	@echo ... string/tasks/test_tasks/test_tasks.i
+	@echo ... string/tasks/test_tasks/test_tasks.s
+	@echo ... string/test_functions/test_functions.obj
+	@echo ... string/test_functions/test_functions.i
+	@echo ... string/test_functions/test_functions.s
 	@echo ... vector/vector.obj
 	@echo ... vector/vector.i
 	@echo ... vector/vector.s

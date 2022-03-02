@@ -6,25 +6,23 @@
 
 #IncludeRegexTransform: 
 
+C:/CLionProjects/untitled3/libs/data_structures/string/string.c
+string.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+
 C:/CLionProjects/untitled3/libs/data_structures/string/string.h
 string.h
 -
 ctype.h
 -
 
+C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.h
+
+C:/CLionProjects/untitled3/libs/data_structures/string/test_functions/test_functions.h
+
 C:/CLionProjects/untitled3/main.c
-stdio.h
--
-stdint.h
--
-assert.h
--
-stdbool.h
--
-stdlib.h
--
-math.h
--
-libs/data_structures/string/string.h
-C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+libs/data_structures/string/test_functions/test_functions.h
+C:/CLionProjects/untitled3/libs/data_structures/string/test_functions/test_functions.h
+libs/data_structures/string/tasks/test_tasks/test_tasks.h
+C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.h
 
