@@ -4,6 +4,9 @@
 libs/data_structures/CMakeFiles/data_structures.dir/matrix/matrix.c.obj: \
  ../libs/data_structures/matrix/matrix.c \
  ../libs/data_structures/matrix/matrix.h
+libs/data_structures/CMakeFiles/data_structures.dir/string/string.c.obj: \
+ ../libs/data_structures/string/string.c \
+ ../libs/data_structures/string/string.h
 libs/data_structures/CMakeFiles/data_structures.dir/vector/vector.c.obj: \
  ../libs/data_structures/vector/vector.c \
  ../libs/data_structures/vector/vector.h

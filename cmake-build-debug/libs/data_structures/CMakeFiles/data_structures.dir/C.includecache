@@ -6,21 +6,13 @@
 
 #IncludeRegexTransform: 
 
-C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.c
-matrix.h
-C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
-malloc.h
--
-stdio.h
--
-mem.h
--
+C:/CLionProjects/untitled3/libs/data_structures/string/string.c
+string.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
 
-C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
-stdio.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+string.h
 -
-stdbool.h
--
-stdlib.h
+ctype.h
 -
 

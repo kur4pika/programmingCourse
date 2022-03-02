@@ -129,6 +129,19 @@ untitled3/fast:
 .PHONY : untitled3/fast
 
 #=============================================================================
+# Target rules for targets named project
+
+# Build rule for target.
+project: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\Makefile2 project
+.PHONY : project
+
+# fast build rule for target.
+project/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/build
+.PHONY : project/fast
+
+#=============================================================================
 # Target rules for targets named data_structures
 
 # Build rule for target.
@@ -202,6 +215,30 @@ libs/algorithms/array/array.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.s
 .PHONY : libs/algorithms/array/array.c.s
 
+libs/data_structures/string/string.obj: libs/data_structures/string/string.c.obj
+.PHONY : libs/data_structures/string/string.obj
+
+# target to build an object file
+libs/data_structures/string/string.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/data_structures/string/string.c.obj
+.PHONY : libs/data_structures/string/string.c.obj
+
+libs/data_structures/string/string.i: libs/data_structures/string/string.c.i
+.PHONY : libs/data_structures/string/string.i
+
+# target to preprocess a source file
+libs/data_structures/string/string.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/data_structures/string/string.c.i
+.PHONY : libs/data_structures/string/string.c.i
+
+libs/data_structures/string/string.s: libs/data_structures/string/string.c.s
+.PHONY : libs/data_structures/string/string.s
+
+# target to generate assembly for a file
+libs/data_structures/string/string.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/libs/data_structures/string/string.c.s
+.PHONY : libs/data_structures/string/string.c.s
+
 libs/data_structures/vector/vector.obj: libs/data_structures/vector/vector.c.obj
 .PHONY : libs/data_structures/vector/vector.obj
 
@@ -232,6 +269,7 @@ main.obj: main.c.obj
 # target to build an object file
 main.c.obj:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/main.c.obj
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/main.c.obj
 .PHONY : main.c.obj
 
 main.i: main.c.i
@@ -240,6 +278,7 @@ main.i: main.c.i
 # target to preprocess a source file
 main.c.i:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/main.c.i
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/main.c.i
 .PHONY : main.c.i
 
 main.s: main.c.s
@@ -248,6 +287,7 @@ main.s: main.c.s
 # target to generate assembly for a file
 main.c.s:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\untitled3.dir\build.make CMakeFiles/untitled3.dir/main.c.s
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\project.dir\build.make CMakeFiles/project.dir/main.c.s
 .PHONY : main.c.s
 
 # Help Target
@@ -260,6 +300,7 @@ help:
 	@echo ... rebuild_cache
 	@echo ... algorithms
 	@echo ... data_structures
+	@echo ... project
 	@echo ... untitled3
 	@echo ... libs/algorithms/algorithms.obj
 	@echo ... libs/algorithms/algorithms.i
@@ -267,6 +308,9 @@ help:
 	@echo ... libs/algorithms/array/array.obj
 	@echo ... libs/algorithms/array/array.i
 	@echo ... libs/algorithms/array/array.s
+	@echo ... libs/data_structures/string/string.obj
+	@echo ... libs/data_structures/string/string.i
+	@echo ... libs/data_structures/string/string.s
 	@echo ... libs/data_structures/vector/vector.obj
 	@echo ... libs/data_structures/vector/vector.i
 	@echo ... libs/data_structures/vector/vector.s

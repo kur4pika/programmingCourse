@@ -10,6 +10,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 set(CMAKE_DEPENDS_CHECK_C
   "C:/CLionProjects/untitled3/libs/algorithms/algorithms.c" "C:/CLionProjects/untitled3/cmake-build-debug/CMakeFiles/untitled3.dir/libs/algorithms/algorithms.c.obj"
   "C:/CLionProjects/untitled3/libs/algorithms/array/array.c" "C:/CLionProjects/untitled3/cmake-build-debug/CMakeFiles/untitled3.dir/libs/algorithms/array/array.c.obj"
+  "C:/CLionProjects/untitled3/libs/data_structures/string/string.c" "C:/CLionProjects/untitled3/cmake-build-debug/CMakeFiles/untitled3.dir/libs/data_structures/string/string.c.obj"
   "C:/CLionProjects/untitled3/libs/data_structures/vector/vector.c" "C:/CLionProjects/untitled3/cmake-build-debug/CMakeFiles/untitled3.dir/libs/data_structures/vector/vector.c.obj"
   "C:/CLionProjects/untitled3/main.c" "C:/CLionProjects/untitled3/cmake-build-debug/CMakeFiles/untitled3.dir/main.c.obj"
   )

@@ -6,20 +6,10 @@
 
 #IncludeRegexTransform: 
 
-C:/CLionProjects/untitled3/libs/algorithms/algorithms.h
-stdint.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+string.h
 -
-
-C:/CLionProjects/untitled3/libs/algorithms/array/array.h
-stddef.h
--
-
-C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
-stdio.h
--
-stdbool.h
--
-stdlib.h
+ctype.h
 -
 
 C:/CLionProjects/untitled3/main.c
@@ -27,12 +17,6 @@ stdio.h
 -
 stdint.h
 -
-libs/data_structures/matrix/matrix.h
-C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.h
-libs/algorithms/array/array.h
-C:/CLionProjects/untitled3/libs/algorithms/array/array.h
-libs/algorithms/algorithms.h
-C:/CLionProjects/untitled3/libs/algorithms/algorithms.h
 assert.h
 -
 stdbool.h
@@ -41,4 +25,6 @@ stdlib.h
 -
 math.h
 -
+libs/data_structures/string/string.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
 
