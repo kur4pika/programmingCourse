@@ -15,14 +15,6 @@ string.h
 -
 ctype.h
 -
-
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.h
-
-C:/CLionProjects/untitled3/libs/data_structures/string/test_functions/test_functions.h
-
-C:/CLionProjects/untitled3/main.c
-libs/data_structures/string/test_functions/test_functions.h
-C:/CLionProjects/untitled3/libs/data_structures/string/test_functions/test_functions.h
-libs/data_structures/string/tasks/test_tasks/test_tasks.h
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.h
+stdbool.h
+-
 

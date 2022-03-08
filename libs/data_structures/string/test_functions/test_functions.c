@@ -9,6 +9,12 @@ void test_strlen_stringEmpty() {
     assert(strlen(s) == 0);
 }
 
+void test_strlen_stringWithoutSpace() {
+    char *s = "kurapika";
+
+    assert(strlen(s) == 8);
+}
+
 void test_strlen_stringWithSpace() {
     char *s = "Hello world!";
 
@@ -16,16 +22,18 @@ void test_strlen_stringWithSpace() {
 
 }
 
-void test_strlen_stringWithoutSpace() {
-    char *s = "kurapika";
-
-    assert(strlen(s) == 8);
-}
-
 void test_strlen() {
     test_strlen_stringEmpty();
-    test_strlen_stringWithSpace();
     test_strlen_stringWithoutSpace();
+    test_strlen_stringWithSpace();
+}
+
+#include <stdio.h>
+
+void test_find_stringNoElement() {
+    char *s = "kurapika";
+
+    assert(*(find(s, &s[strlen(s)], 'w')) == '\0');
 }
 
 void test_find_stringIsElement() {
@@ -34,15 +42,21 @@ void test_find_stringIsElement() {
     assert(*(find(s, "\0", 'p')) == 'p');
 }
 
-void test_find_stringNoElement() {
-    char *s = "kurapika";
-
-    assert(*(find(s, "\0", 'w')) == '\0');
+void test_find() {
+    test_find_stringNoElement();
+    test_find_stringIsElement();
 }
 
-void test_find() {
-    test_find_stringIsElement();
-    test_find_stringNoElement();
+void test_findNonSpace_stringEmpty() {
+    char *s = "";
+
+    assert(*(findNonSpace(s)) == '\0');
+}
+
+void test_findNonSpace_stringSpace() {
+    char *s = "   ";
+
+    assert(*(findNonSpace(s)) == '\0');
 }
 
 void test_findNonSpace_stringWithoutSpace() {
@@ -57,35 +71,11 @@ void test_findNonSpace_stringWithSpace() {
     assert(*(findNonSpace(s)) == 'w');
 }
 
-void test_findNonSpace_stringSpace() {
-    char *s = "   ";
-
-    assert(*(findNonSpace(s)) == '\0');
-}
-
-void test_findNonSpace_stringEmpty() {
-    char *s = "";
-
-    assert(*(findNonSpace(s)) == '\0');
-}
-
 void test_findNonSpace() {
+    test_findNonSpace_stringEmpty();
+    test_findNonSpace_stringSpace();
     test_findNonSpace_stringWithoutSpace();
     test_findNonSpace_stringWithSpace();
-    test_findNonSpace_stringSpace();
-    test_findNonSpace_stringEmpty();
-}
-
-void test_findSpace_stringWithSpace() {
-    char *s = "kurapika space";
-
-    assert(*(findSpace(s)) == *(s + 8));
-}
-
-void test_findSpace_stringWithoutSpace() {
-    char *s = "kurapikaspace";
-
-    assert(*(findSpace(s)) == '\0');
 }
 
 void test_findSpace_stringEmpty() {
@@ -94,10 +84,28 @@ void test_findSpace_stringEmpty() {
     assert(*(findSpace(s)) == '\0');
 }
 
+void test_findSpace_stringWithoutSpace() {
+    char *s = "kurapikaspace";
+
+    assert(*(findSpace(s)) == '\0');
+}
+
+void test_findSpace_stringWithSpace() {
+    char *s = "kurapika space";
+
+    assert(*(findSpace(s)) == *(s + 8));
+}
+
 void test_findSpace() {
-    test_findSpace_stringWithSpace();
-    test_findSpace_stringWithoutSpace();
     test_findSpace_stringEmpty();
+    test_findSpace_stringWithoutSpace();
+    test_findSpace_stringWithSpace();
+}
+
+void test_findNonSpaceReverse_stringEmpty() {
+    char *s = "";
+
+    assert(*(findNonSpaceReverse(s, s - 1)) == '\0');
 }
 
 void test_findNonSpaceReverse_stringWithoutSpace() {
@@ -112,16 +120,16 @@ void test_findNonSpaceReverse_stringWithSpace() {
     assert(*(findNonSpaceReverse(s + 34, s - 1)) == 'a');
 }
 
-void test_findNonSpaceReverse_stringEmpty() {
-    char *s = "";
-
-    assert(*(findNonSpaceReverse(s, s - 1)) == '\0');
-}
-
 void test_findNonSpaceReverse() {
+    test_findNonSpaceReverse_stringEmpty();
     test_findNonSpaceReverse_stringWithoutSpace();
     test_findNonSpaceReverse_stringWithSpace();
-    test_findNonSpaceReverse_stringEmpty();
+}
+
+void test_findSpaceReverse_stringSpace() {
+    char *s = "";
+
+    assert(*(findSpaceReverse(s, s - 1)) == '\0');
 }
 
 void test_findSpaceReverse_stringWithoutSpace() {
@@ -136,16 +144,10 @@ void test_findSpaceReverse_stringWithSpace() {
     assert(*(findSpaceReverse(s + 34, s - 1)) == '\t');
 }
 
-void test_findSpaceReverse_stringSpace() {
-    char *s = "";
-
-    assert(*(findSpaceReverse(s, s - 1)) == '\0');
-}
-
 void test_findSpaceReverse() {
-    test_findSpaceReverse_stringWithoutSpace();
-    test_findSpaceReverse_stringWithoutSpace();
     test_findSpaceReverse_stringSpace();
+    test_findSpaceReverse_stringWithoutSpace();
+    test_findSpaceReverse_stringWithSpace();
 }
 
 void test_strcmp_stringEqual() {

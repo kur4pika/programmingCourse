@@ -3,10 +3,14 @@
 
 #include <string.h>
 #include <ctype.h>
+#include <stdbool.h>
 
 #define MAX_STRING_SIZE 100
 #define MAX_N_WORDS_IN_STRING 100
 #define MAX_WORD_SIZE 20
+
+static char _stringBuffer[MAX_STRING_SIZE];
+static char *_stringSpaces = "                                ";
 
 size_t strlen(const char *begin);// возвращает количество символов в строке
 
@@ -38,6 +42,11 @@ copy(const char *beginSource, const char *endSource, char *beginDestination);// 
 // фрагмент памяти, начиная с адреса beginSource до endSource
 // Возвращает указатель на следующий свободный фрагмент памяти в destination
 
+char *copyReverse(char *rbeginSource, const char *rendSource, char *beginDestination);
+// записывает по адресу beginDestination
+// фрагмент памяти, начиная с адреса rbeginSource до rendSource
+// Возвращает указатель на следующий слева свободный фрагмент памяти в destination
+
 char *copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int));// записывает по адресу
 // beginDestination элементы из фрагмента памяти начиная с beginSource
 // заканчивая endSource, удовлетворяющие функции-предикату f.
@@ -49,10 +58,19 @@ copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDestination
 // rendSource, удовлетворяющие функции-предикату f.
 // возвращает значение beginDestination по окончанию работы функции
 
-int strcmp(const char *lhs, const char *rhs);// возвращает отрицательное значение, если lhs118 располагается до rhs
+int strcmp(const char *lhs, const char *rhs);// возвращает отрицательное значение, если lhs располагается до rhs
 // в лексикографическом порядке (как в словаре), значение 0, если lhs и rhs равны,
 // иначе – положительное значение.
 
+typedef struct wordDescriptor {
+    char *begin; // позиция начала слова
+    char *end; // позиция первого символа, после последнего символа слова
+} wordDescriptor;
+
 char *getEndOfString(char *s);// возвращает указатель на конец строки s
+
+int getWord(char *beginSearch, wordDescriptor *word);
+
+bool getWordReverse(char *rbegin, char *rend, wordDescriptor *word);
 
 #endif //MAIN_C_STRING_H
