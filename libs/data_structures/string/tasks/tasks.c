@@ -448,3 +448,40 @@ bool isLettersOfWordsInStringEqual(char *source) {
 
     return isEqualWordsInString(_stringBuffer);
 }
+
+
+
+// task 15
+
+// возвращает указатель на строку, состоящую из слов строки source, которые отличны от последнего слова
+char *getStringFromWordsWhichDifferentFromLastWord(char *source) {
+    char *beginSearch = source + strlen(source) - 1;
+    wordDescriptor lastWord;
+
+    if (!getWordReverse(beginSearch, source - 1, &lastWord))
+        return " \0";
+    size_t lastWordSize = lastWord.begin - lastWord.end;
+
+    beginSearch = source;
+    wordDescriptor word;
+
+    memcpy(_stringBuffer, _stringSpaces, MAX_STRING_SIZE);
+    char *endStringBuffer = _stringBuffer - 1;
+    while (getWord(beginSearch, &word)) {
+        size_t wordSize = word.end - word.begin;
+        if (wordSize != lastWordSize || memcmp(word.begin, lastWord.end + 1, wordSize) == 0)
+            endStringBuffer = copy(word.begin, word.end, endStringBuffer + 1);
+
+        beginSearch = word.end;
+    }
+
+    *(endStringBuffer + (endStringBuffer == _stringBuffer - 1)) = '\0';
+
+    return _stringBuffer;
+}
+
+
+
+// task 16
+
+//

@@ -42,4 +42,9 @@ bool isEqualWordsInString(char *source);// возвращает значение
 bool isLettersOfWordsInStringEqual(char *source);// возвращает значение истина, если в строке source есть пара слов,
                                                  // составленная из одинаковых букв
 
+
+char *getStringFromWordsWhichDifferentFromLastWord(char *source);// возвращает указатель на строку, состоящую из слов
+                                                // строки source, которые отличны от последнего слова
+
 #endif //MAIN_C_TASKS_H
+

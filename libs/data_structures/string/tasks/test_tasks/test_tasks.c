@@ -456,7 +456,6 @@ void test_reverseWordsOfString() {
 }
 
 
-
 void test_getWordBeforeFirstWordWithA_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -487,7 +486,6 @@ void test_getWordBeforeFirstWordWithA() {
     test_getWordBeforeFirstWordWithA_firstWordWithA();
     test_getWordBeforeFirstWordWithA_wordWithA();
 }
-
 
 
 void test_getLastWordInFirstStringFromSecondString_emptyString() {
@@ -546,7 +544,6 @@ void test_getLastWordInFirstStringFromSecondString() {
 }
 
 
-
 void test_isEqualWordsInString_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -578,7 +575,6 @@ void test_isEqualWordsInString() {
 }
 
 
-
 void test_isLettersOfWordsInStringEqual_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -603,6 +599,57 @@ void test_isLettersOfWordsInStringEqual() {
     test_isLettersOfWordsInStringEqual_letterOfWordsEqual();
 }
 
+
+void test_getStringFromWordsWhichDifferentFromLastWord_emptyString() {
+    char s1[MAX_STRING_SIZE] = "";
+
+    char *s = getStringFromWordsWhichDifferentFromLastWord(s1);
+
+    char expectation[MAX_STRING_SIZE] = "";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_getStringFromWordsWhichDifferentFromLastWord_lastWordOnce() {
+    char s1[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+
+    char *s = getStringFromWordsWhichDifferentFromLastWord(s1);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika kuruta best";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_getStringFromWordsWhichDifferentFromLastWord_lastWordTwice() {
+    char s1[MAX_STRING_SIZE] = "kurapika boy kuruta best boy";
+
+    char *s = getStringFromWordsWhichDifferentFromLastWord(s1);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika kuruta best";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_getStringFromWordsWhichDifferentFromLastWord_allWordsSame() {
+    char s1[MAX_STRING_SIZE] = "kurapika kurapika kurapika";
+
+    char *s = getStringFromWordsWhichDifferentFromLastWord(s1);
+
+    char expectation[MAX_STRING_SIZE] = "";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_getStringFromWordsWhichDifferentFromLastWord() {
+    test_getStringFromWordsWhichDifferentFromLastWord_emptyString();
+    test_getStringFromWordsWhichDifferentFromLastWord_lastWordOnce();
+    test_getStringFromWordsWhichDifferentFromLastWord_lastWordTwice();
+    test_getStringFromWordsWhichDifferentFromLastWord_allWordsSame();
+}
+
+
+
+
 void test_tasks() {
     test_removeNonLetters();
     test_removeExtraSpaces();
@@ -619,4 +666,5 @@ void test_tasks() {
     test_getLastWordInFirstStringFromSecondString();
     test_isEqualWordsInString();
     test_isLettersOfWordsInStringEqual();
+    test_getStringFromWordsWhichDifferentFromLastWord();
 }
