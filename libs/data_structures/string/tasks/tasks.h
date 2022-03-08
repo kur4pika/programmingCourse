@@ -39,4 +39,7 @@ void wordDescriptorToString(wordDescriptor word, char *destination);// запи�
 
 bool isEqualWordsInString(char *source);// возвращает значение истина если в строке source есть одинаковые слова
 
+bool isLettersOfWordsInStringEqual(char *source);// возвращает значение истина, если в строке source есть пара слов,
+                                                 // составленная из одинаковых букв
+
 #endif //MAIN_C_TASKS_H

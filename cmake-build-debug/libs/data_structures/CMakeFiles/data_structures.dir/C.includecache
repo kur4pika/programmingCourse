@@ -21,6 +21,8 @@ C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
 C:/CLionProjects/untitled3/libs/data_structures/string/string.h
 stdio.h
 -
+stdlib.h
+-
 
 C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
 stdbool.h

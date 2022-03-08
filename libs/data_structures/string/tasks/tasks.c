@@ -2,6 +2,7 @@
 
 #include "../string.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 #define EMPTY_STRING 0
 #define NOT_FOUND_A_WORD_WITH_A 1
@@ -281,7 +282,7 @@ void reverseWordsOfString(char *source) {
 // возвращает значение 'истина', если слова word содержит букву a, иначе - 'ложь'
 bool isWordWithA(wordDescriptor word) {
     for (; word.begin < word.end; word.begin++)
-        if (*word.begin == 'a')
+        if (*word.begin == 'a' || *word.begin == 'A')
             return true;
 
     return false;
@@ -416,4 +417,34 @@ bool isEqualWordsInString(char *source) {
     }
 
     return false;
+}
+
+
+
+// task 14
+
+int compare_char(const void *a, const void *b) {
+    char arg1 = *(const char *) a;
+    char arg2 = *(const char *) b;
+    if (arg1 < arg2)
+        return -1;
+    if (arg1 > arg2)
+        return 1;
+
+    return 0;
+}
+
+// возвращает значение истина, если в строке source есть пара слов, составленная из одинаковых букв
+bool isLettersOfWordsInStringEqual(char *source) {
+    memcpy(_stringBuffer, source, strlen(source) + 1);
+
+    char *beginSearch = _stringBuffer;
+    wordDescriptor word;
+
+    while (getWord(beginSearch, &word)) {
+        qsort(word.begin, word.end - word.begin, sizeof(char), compare_char);
+        beginSearch = word.end;
+    }
+
+    return isEqualWordsInString(_stringBuffer);
 }

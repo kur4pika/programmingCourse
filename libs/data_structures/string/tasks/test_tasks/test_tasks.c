@@ -577,6 +577,32 @@ void test_isEqualWordsInString() {
     test_isEqualWordsInString_equalWords();
 }
 
+
+
+void test_isLettersOfWordsInStringEqual_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    assert(isLettersOfWordsInStringEqual(s) == 0);
+}
+
+void test_isLettersOfWordsInStringEqual_noLettersOfWordsEqual() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+
+    assert(isLettersOfWordsInStringEqual(s) == 0);
+}
+
+void test_isLettersOfWordsInStringEqual_letterOfWordsEqual() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta kuparika";
+
+    assert(isLettersOfWordsInStringEqual(s) == 1);
+}
+
+void test_isLettersOfWordsInStringEqual() {
+    test_isLettersOfWordsInStringEqual_emptyString();
+    test_isLettersOfWordsInStringEqual_noLettersOfWordsEqual();
+    test_isLettersOfWordsInStringEqual_letterOfWordsEqual();
+}
+
 void test_tasks() {
     test_removeNonLetters();
     test_removeExtraSpaces();
@@ -592,4 +618,5 @@ void test_tasks() {
     test_getWordBeforeFirstWordWithA();
     test_getLastWordInFirstStringFromSecondString();
     test_isEqualWordsInString();
+    test_isLettersOfWordsInStringEqual();
 }
