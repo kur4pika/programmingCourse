@@ -14,23 +14,19 @@ ctype.h
 stdbool.h
 -
 
+C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.c
+tasks.h
+C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
+../string.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+stdio.h
+-
+stdlib.h
+-
+
 C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
 stdbool.h
 -
 ../string.h
 C:/CLionProjects/untitled3/libs/data_structures/string/string.h
-
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.c
-test_tasks.h
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.h
-../tasks.h
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
-../../string.h
-C:/CLionProjects/untitled3/libs/data_structures/string/string.h
-assert.h
--
-stdio.h
--
-
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/test_tasks/test_tasks.h
 

@@ -649,6 +649,53 @@ void test_getStringFromWordsWhichDifferentFromLastWord() {
 
 
 
+void test_deleteWordsPalindromesFromString_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    deleteWordsPalindromesFromString(s);
+
+    char expectation[MAX_STRING_SIZE] = " ";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_deleteWordsPalindromesFromString_noPalindrome() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta";
+
+    deleteWordsPalindromesFromString(s);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika kuruta";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_deleteWordsPalindromesFromString_onePalindrome() {
+    char s[MAX_STRING_SIZE] = "kurapikakiparuk kuruta";
+
+    deleteWordsPalindromesFromString(s);
+
+    char expectation[MAX_STRING_SIZE] = "kuruta";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_deleteWordsPalindromesFromString_allPalindrome() {
+    char s[MAX_STRING_SIZE] = "kurapikakiparuk kurapikakiparuk kurapikakiparuk kurapikakiparuk";
+
+    deleteWordsPalindromesFromString(s);
+    printf("%s", s);
+
+    char expectation[MAX_STRING_SIZE] = " ";
+
+    assert(strcmp(s, expectation));
+}
+
+void test_deleteWordsPalindromesFromString() {
+    test_deleteWordsPalindromesFromString_emptyString();
+    test_deleteWordsPalindromesFromString_noPalindrome();
+    test_deleteWordsPalindromesFromString_onePalindrome();
+    test_deleteWordsPalindromesFromString_allPalindrome();
+}
 
 void test_tasks() {
     test_removeNonLetters();
@@ -667,4 +714,5 @@ void test_tasks() {
     test_isEqualWordsInString();
     test_isLettersOfWordsInStringEqual();
     test_getStringFromWordsWhichDifferentFromLastWord();
+    test_deleteWordsPalindromesFromString();
 }

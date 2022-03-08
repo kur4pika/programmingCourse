@@ -482,6 +482,22 @@ char *getStringFromWordsWhichDifferentFromLastWord(char *source) {
 
 
 
-// task 16
+// task 17
 
-//
+// удаляет из строки source слова-палиндромы
+void deleteWordsPalindromesFromString(char *source) {
+    char *beginSearch = source;
+    wordDescriptor word;
+
+    memcpy(source, _stringSpaces, MAX_STRING_SIZE);
+    char *endSource = source - 1;
+
+    while (getWord(beginSearch, &word)) {
+        if (!isWordPalindrome(word))
+            endSource = copy(word.begin, word.end, endSource + 1);
+
+        beginSearch = word.end;
+    }
+
+    *(endSource + (endSource == source - 1)) = '\0';
+}

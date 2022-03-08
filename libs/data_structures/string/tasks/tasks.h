@@ -46,5 +46,8 @@ bool isLettersOfWordsInStringEqual(char *source);// возвращает зна�
 char *getStringFromWordsWhichDifferentFromLastWord(char *source);// возвращает указатель на строку, состоящую из слов
                                                 // строки source, которые отличны от последнего слова
 
+// удаляет из строки source слова-палиндромы
+void deleteWordsPalindromesFromString(char *source);
+
 #endif //MAIN_C_TASKS_H
 
