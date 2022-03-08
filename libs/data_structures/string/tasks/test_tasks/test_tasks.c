@@ -192,10 +192,9 @@ void test_replaceDigitsWithSpaces() {
 
 
 void replace_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
     char w1[MAX_STRING_SIZE] = "kurapika";
     char w2[MAX_STRING_SIZE] = "emo boy";
-
-    char s[MAX_STRING_SIZE] = "";
 
     replace(s, w1, w2);
 
@@ -204,7 +203,7 @@ void replace_emptyString() {
     assert(strcmp(s, expectation) == 0);
 }
 
-void test_replace_oneLetter() {
+void test_replace_w1MoreW2() {
     char s[MAX_STRING_SIZE] = "kurapi ka";
     char w1[MAX_STRING_SIZE] = "ka";
     char w2[MAX_STRING_SIZE] = "a";
@@ -216,13 +215,24 @@ void test_replace_oneLetter() {
     assert(strcmp(s, expectation) == 0);
 }
 
-void test_replace_oneWord() {
+void test_replace_w1EqualsW2() {
+    char s[MAX_STRING_SIZE] = "kurapi ka";
+    char w1[MAX_STRING_SIZE] = "ka";
+    char w2[MAX_STRING_SIZE] = "pa";
+
+    replace(s, w1, w2);
+
+    char expectation[MAX_STRING_SIZE] = "kurapi pa";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_replace_w1LessW2() {
     char s[MAX_STRING_SIZE] = "kur a pik a";
     char w1[MAX_STRING_SIZE] = "a";
     char w2[MAX_STRING_SIZE] = "pico";
 
     replace(s, w1, w2);
-    printf("%s", s);
 
     char expectation[MAX_STRING_SIZE] = "kur pico pik pico";
 
@@ -231,8 +241,9 @@ void test_replace_oneWord() {
 
 void test_replace() {
     replace_emptyString();
-    test_replace_oneLetter();
-    test_replace_oneWord();
+    test_replace_w1MoreW2();
+    test_replace_w1EqualsW2();
+    test_replace_w1LessW2();
 }
 
 void test_tasks() {

@@ -93,7 +93,6 @@ void replaceDigitsWithSpaces(char *s) {
 
 // task 5
 
-#include <stdio.h>
 // заменяет все вхождения слова w1 на слово w2 строки sourse
 void replace(char *source, char *w1, char *w2) {
     size_t w1Size = strlen(w1);
@@ -114,16 +113,17 @@ void replace(char *source, char *w1, char *w2) {
         }
     else {
         size_t sourceLen = strlen(source);
-        memcpy(_stringBuffer, source, sourceLen);
+        memcpy(_stringBuffer, source, sourceLen + 1);
 
         while (getWord(beginSearch, &word)) {
             beginSearch = word.end;
 
-            if (strcmp(w1, word.begin) == 0) {
+            if (w1Size == word.end - word.begin && memcmp(w1, word.begin, w1Size) == 0) {
                 beginSearch += (w2Size - w1Size);
                 memcpy(word.begin, w2, w2Size);
                 long long endStringBuffer = word.end - source;
-                memcpy(beginSearch, &_stringBuffer[endStringBuffer], sourceLen - endStringBuffer);
+                if (_stringBuffer[endStringBuffer] != '\0')
+                    memcpy(beginSearch, &_stringBuffer[endStringBuffer], sourceLen - endStringBuffer);
             }
         }
     }
