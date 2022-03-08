@@ -191,7 +191,7 @@ void test_replaceDigitsWithSpaces() {
 
 
 
-void replace_emptyString() {
+void test_replace_emptyString() {
     char s[MAX_STRING_SIZE] = "";
     char w1[MAX_STRING_SIZE] = "kurapika";
     char w2[MAX_STRING_SIZE] = "emo boy";
@@ -240,10 +240,51 @@ void test_replace_w1LessW2() {
 }
 
 void test_replace() {
-    replace_emptyString();
+    test_replace_emptyString();
     test_replace_w1MoreW2();
     test_replace_w1EqualsW2();
     test_replace_w1LessW2();
+}
+
+
+
+void test_areWordsOfStringLexicographicallyOrdered_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    areWordsOfStringLexicographicallyOrdered(s);
+
+    assert(areWordsOfStringLexicographicallyOrdered(s) == true);
+}
+
+void test_areWordsOfStringLexicographicallyOrdered_twoWordsEquals() {
+    char s[MAX_STRING_SIZE] = "kurapika kurapika";
+
+    areWordsOfStringLexicographicallyOrdered(s);
+
+    assert(areWordsOfStringLexicographicallyOrdered(s) == true);
+}
+
+void test_areWordsOfStringLexicographicallyOrdered_w1LessW2() {
+    char s[MAX_STRING_SIZE] = "kurapik kurapika";
+
+    areWordsOfStringLexicographicallyOrdered(s);
+
+    assert(areWordsOfStringLexicographicallyOrdered(s) == true);
+}
+
+void test_areWordsOfStringLexicographicallyOrdered_w1MoreW2() {
+    char s[MAX_STRING_SIZE] = "kurapika kurapik";
+
+    areWordsOfStringLexicographicallyOrdered(s);
+
+    assert(areWordsOfStringLexicographicallyOrdered(s) == false);
+}
+
+void test_areWordsOfStringLexicographicallyOrdered() {
+    test_areWordsOfStringLexicographicallyOrdered_emptyString();
+    test_areWordsOfStringLexicographicallyOrdered_twoWordsEquals();
+    test_areWordsOfStringLexicographicallyOrdered_w1LessW2();
+    test_areWordsOfStringLexicographicallyOrdered_w1MoreW2();
 }
 
 void test_tasks() {
@@ -252,4 +293,6 @@ void test_tasks() {
     //test_reverseLettersOfWordsOfString();
     test_replaceDigitsWithSpaces();
     test_replace();
+    test_areWordsOfStringLexicographicallyOrdered();
+
 }

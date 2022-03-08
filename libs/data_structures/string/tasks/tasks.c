@@ -128,3 +128,46 @@ void replace(char *source, char *w1, char *w2) {
         }
     }
 }
+
+
+// task 6
+
+// возвращает значение 'истина', если слова w1 и w2 упорядочены лексиграфически
+bool areWordsLexicographicallyOrdered(wordDescriptor w1, wordDescriptor w2) {
+    size_t w1Size = w1.end - w1.begin;
+    size_t w2Size = w2.end - w2.begin;
+
+    if (w1Size < w2Size) {
+        while (w1.begin != w1.end)
+            if (*(w1.begin++) != *(w2.begin++))
+                return false;
+    } else if (w1Size == w2Size) {
+        while (w1.begin != w1.end)
+            if (*(w1.begin++) > *(w2.begin++))
+                return false;
+    } else
+        return false;
+
+    return true;
+}
+
+// возвращает значение 'истина', если слова строки sourse упорядочены лексиграфически, иначе - 'ложь'
+bool areWordsOfStringLexicographicallyOrdered(char *source) {
+    char *beginSearch = source;
+    wordDescriptor word1;
+    wordDescriptor word2;
+
+    if (!getWord(beginSearch, &word1))
+        return true;
+    beginSearch = word1.end;
+
+    while (getWord(beginSearch, &word2)){
+        if (!areWordsLexicographicallyOrdered(word1, word2))
+            return false;
+
+        word1 = word2;
+        beginSearch = word1.end;
+    }
+
+    return true;
+}

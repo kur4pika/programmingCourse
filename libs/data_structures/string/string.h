@@ -69,8 +69,10 @@ typedef struct wordDescriptor {
 
 char *getEndOfString(char *s);// возвращает указатель на конец строки s
 
-int getWord(char *beginSearch, wordDescriptor *word);
+bool getWord(char *beginSearch, wordDescriptor *word);// возвращает 'истина' и записывает в word.begin адрес начала слова,
+                                                    // а в word.end адрес конца слова, если слово найдено, иначе - 'ложь'
 
-bool getWordReverse(char *rbegin, char *rend, wordDescriptor *word);
+bool getWordReverse(char *rbegin, char *rend, wordDescriptor *word);// возвращает 'истина' и записывает в word.begin адрес
+                                        // конца слова, а в word.end адрес начала слова, если слово найдено, иначе - 'ложь'
 
 #endif //MAIN_C_STRING_H
