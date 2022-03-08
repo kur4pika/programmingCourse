@@ -11,11 +11,13 @@ void reverseLettersOfWordsOfString(char *s);// обращает каждое с�
 
 void replaceDigitsWithSpaces(char *s);// заменяет каждую цифру в строке s на соотвутсвующее число пробелов
 
-void replace(char *source, char *w1, char *w2);// заменяет все вхождения слова w1 на слово w2 строки sourse
+void replace(char *source, char *w1, char *w2);// заменяет все вхождения слова w1 на слово w2 строки source
 
-bool areWordsOfStringLexicographicallyOrdered(char *source);// возвращает значение 'истина', если слова строки sourse
+bool areWordsOfStringLexicographicallyOrdered(char *source);// возвращает значение 'истина', если слова строки source
                                                             // упорядочены лексиграфически, иначе - 'ложь'
 
+void printWordsOfStringReverse(char *source);// выводит слова строки source в обратном порядке по одному в строке экрана
 
+int getCountOfWordsPalindromes(char *source);// возвращает количество слов-палиндромов в строке source
 
 #endif //MAIN_C_TASKS_H

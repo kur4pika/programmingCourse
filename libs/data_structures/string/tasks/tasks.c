@@ -1,6 +1,7 @@
 #include "tasks.h"
 
 #include "../string.h"
+#include <stdio.h>
 
 // task 1
 
@@ -93,7 +94,7 @@ void replaceDigitsWithSpaces(char *s) {
 
 // task 5
 
-// заменяет все вхождения слова w1 на слово w2 строки sourse
+// заменяет все вхождения слова w1 на слово w2 строки source
 void replace(char *source, char *w1, char *w2) {
     size_t w1Size = strlen(w1);
     size_t w2Size = strlen(w2);
@@ -151,7 +152,7 @@ bool areWordsLexicographicallyOrdered(wordDescriptor w1, wordDescriptor w2) {
     return true;
 }
 
-// возвращает значение 'истина', если слова строки sourse упорядочены лексиграфически, иначе - 'ложь'
+// возвращает значение 'истина', если слова строки source упорядочены лексиграфически, иначе - 'ложь'
 bool areWordsOfStringLexicographicallyOrdered(char *source) {
     char *beginSearch = source;
     wordDescriptor word1;
@@ -161,7 +162,7 @@ bool areWordsOfStringLexicographicallyOrdered(char *source) {
         return true;
     beginSearch = word1.end;
 
-    while (getWord(beginSearch, &word2)){
+    while (getWord(beginSearch, &word2)) {
         if (!areWordsLexicographicallyOrdered(word1, word2))
             return false;
 
@@ -170,4 +171,53 @@ bool areWordsOfStringLexicographicallyOrdered(char *source) {
     }
 
     return true;
+}
+
+
+
+// task 7
+
+// выводит слова строки source в обратном порядке по одному в строке экрана
+void printWordsOfStringReverse(char *source) {
+    char *beginSearch = &source[strlen(source)];
+    wordDescriptor word;
+    while (getWordReverse(beginSearch, source - 1, &word)) {
+        beginSearch = word.end;
+
+        for (; ++word.end <= word.begin;)
+            printf("%c", *word.end);
+
+
+        printf("\n");
+    }
+}
+
+
+
+// task 8
+
+// возвращает значение 'истина', если слово является палиндромом, иначе - 'ложь'
+bool isWordPalindrome(wordDescriptor word){
+    word.end--;
+    for (; word.begin < word.end; word.begin++, word.end--)
+        if (*word.begin != *word.end)
+            return false;
+
+    return true;
+}
+
+// возвращает количество слов-палиндромов в строке source
+int getCountOfWordsPalindromes(char *source){
+    char *beginSearch = source;
+    wordDescriptor word;
+
+    int counterWordsPalindrome = 0;
+    while (getWord(beginSearch, &word)){
+        if (isWordPalindrome(word))
+            counterWordsPalindrome++;
+
+        beginSearch = word.end;
+    }
+
+    return counterWordsPalindrome;
 }

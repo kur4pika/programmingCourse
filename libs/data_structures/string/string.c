@@ -132,7 +132,7 @@ bool getWord(char *beginSearch, wordDescriptor *word) {
 // возвращает 'истина' и записывает в word.begin адрес конца слова, а в word.end адрес начала слова, если слово найдено, иначе - 'ложь'
 bool getWordReverse(char *rbegin, char *rend, wordDescriptor *word) {
     word->begin = findNonSpaceReverse(rbegin, rend);
-    if (word->begin < rend)
+    if (word->begin <= rend)
         return false;
 
     word->end = findSpaceReverse(word->begin, rend);

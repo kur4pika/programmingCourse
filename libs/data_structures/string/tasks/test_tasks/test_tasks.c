@@ -251,15 +251,11 @@ void test_replace() {
 void test_areWordsOfStringLexicographicallyOrdered_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
-    areWordsOfStringLexicographicallyOrdered(s);
-
     assert(areWordsOfStringLexicographicallyOrdered(s) == true);
 }
 
 void test_areWordsOfStringLexicographicallyOrdered_twoWordsEquals() {
     char s[MAX_STRING_SIZE] = "kurapika kurapika";
-
-    areWordsOfStringLexicographicallyOrdered(s);
 
     assert(areWordsOfStringLexicographicallyOrdered(s) == true);
 }
@@ -267,15 +263,11 @@ void test_areWordsOfStringLexicographicallyOrdered_twoWordsEquals() {
 void test_areWordsOfStringLexicographicallyOrdered_w1LessW2() {
     char s[MAX_STRING_SIZE] = "kurapik kurapika";
 
-    areWordsOfStringLexicographicallyOrdered(s);
-
     assert(areWordsOfStringLexicographicallyOrdered(s) == true);
 }
 
 void test_areWordsOfStringLexicographicallyOrdered_w1MoreW2() {
     char s[MAX_STRING_SIZE] = "kurapika kurapik";
-
-    areWordsOfStringLexicographicallyOrdered(s);
 
     assert(areWordsOfStringLexicographicallyOrdered(s) == false);
 }
@@ -287,6 +279,46 @@ void test_areWordsOfStringLexicographicallyOrdered() {
     test_areWordsOfStringLexicographicallyOrdered_w1MoreW2();
 }
 
+
+void test_printWordsOfStringReverse() {
+    char s[MAX_STRING_SIZE] = "kurapik kurapika kur";
+
+    printWordsOfStringReverse(s);
+}
+
+
+
+void test_getCountOfWordsPalindromes_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    assert(getCountOfWordsPalindromes(s) == 0);
+}
+
+void test_getCountOfWordsPalindromes_nonPalindrome() {
+    char s[MAX_STRING_SIZE] = "kurapik,BES,BOY";
+
+    assert(getCountOfWordsPalindromes(s) == 0);
+}
+
+void test_getCountOfWordsPalindromes_onePalindrome() {
+    char s[MAX_STRING_SIZE] = "kurapik BESTSEB BOY";
+
+    assert(getCountOfWordsPalindromes(s) == 1);
+}
+
+void test_getCountOfWordsPalindromes_allPalindrome() {
+    char s[MAX_STRING_SIZE] = "kurapikakiparuk BESTSEB BOYOB";
+
+    assert(getCountOfWordsPalindromes(s) == 3);
+}
+
+void test_getCountOfWordsPalindromes() {
+    test_getCountOfWordsPalindromes_emptyString();
+    test_getCountOfWordsPalindromes_nonPalindrome();
+    test_getCountOfWordsPalindromes_onePalindrome();
+    test_getCountOfWordsPalindromes_allPalindrome();
+}
+
 void test_tasks() {
     test_removeNonLetters();
     test_removeExtraSpaces();
@@ -294,5 +326,7 @@ void test_tasks() {
     test_replaceDigitsWithSpaces();
     test_replace();
     test_areWordsOfStringLexicographicallyOrdered();
+    //test_printWordsOfStringReverse();
+    test_getCountOfWordsPalindromes();
 
 }
