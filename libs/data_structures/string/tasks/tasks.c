@@ -356,14 +356,14 @@ int getWordBeforeFirstWordWithA(char *s) {
 // task 12
 
 // возвращает значение 'истина', если слово word есть в строке source
-bool isWordInString(char *source, wordDescriptor word) {
+bool isWordInString(char *source, char *w1Begin, char *w1End) {
     char *beginSearch = source;
     wordDescriptor wordString;
 
     while (getWord(beginSearch, &wordString)) {
         size_t wordStringSize = wordString.end - wordString.begin;
-        size_t wordSize = word.begin - word.end;
-        if (wordStringSize == wordSize && memcmp(word.end + 1, wordString.begin, wordSize) == 0)
+        size_t wordSize = w1End - w1Begin;
+        if (wordStringSize == wordSize && memcmp(w1Begin, wordString.begin, wordSize) == 0)
             return true;
 
         beginSearch = wordString.end;
@@ -378,7 +378,7 @@ wordDescriptor getLastWordInFirstStringFromSecondString(char *s1, char *s2) {
     wordDescriptor word;
 
     while (getWordReverse(beginSearch, s1 - 1, &word)) {
-        if (isWordInString(s2, word)){
+        if (isWordInString(s2, word.end + 1, word.begin + 1)) {
             char *t = word.begin;
             word.begin = word.end + 1;
             word.end = t + 1;
@@ -391,9 +391,29 @@ wordDescriptor getLastWordInFirstStringFromSecondString(char *s1, char *s2) {
     return (wordDescriptor) {NULL, NULL};
 }
 
-void wordDescriptorToString(wordDescriptor word, char *destination){
+// записыавет слово word в строку destination
+void wordDescriptorToString(wordDescriptor word, char *destination) {
     for (; word.begin < word.end; word.begin++)
         *(destination++) = *word.begin;
 
     *destination = '\0';
+}
+
+
+
+// task 13
+
+// возвращает значение 'истина', если в строке source есть одинаковые слова, иначе - 'ложь'
+bool isEqualWordsInString(char *source) {
+    char *beginSearch = source;
+    wordDescriptor word;
+
+    while (getWord(beginSearch, &word)) {
+        beginSearch = word.end;
+
+        if (isWordInString(beginSearch, word.begin, word.end))
+            return true;
+    }
+
+    return false;
 }

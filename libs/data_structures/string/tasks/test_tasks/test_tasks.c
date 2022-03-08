@@ -547,6 +547,35 @@ void test_getLastWordInFirstStringFromSecondString() {
 
 
 
+void test_isEqualWordsInString_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    bool isEqualWords = isEqualWordsInString(s);
+
+    assert(isEqualWords == 0);
+}
+
+void test_isEqualWordsInString_noEqualWords() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+
+    bool isEqualWords = isEqualWordsInString(s);
+
+    assert(isEqualWords == 0);
+}
+
+void test_isEqualWordsInString_equalWords() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta best boy kuruta";
+
+    bool isEqualWords = isEqualWordsInString(s);
+
+    assert(isEqualWords == 1);
+}
+
+void test_isEqualWordsInString() {
+    test_isEqualWordsInString_emptyString();
+    test_isEqualWordsInString_noEqualWords();
+    test_isEqualWordsInString_equalWords();
+}
 
 void test_tasks() {
     test_removeNonLetters();
@@ -562,4 +591,5 @@ void test_tasks() {
     test_reverseWordsOfString();
     test_getWordBeforeFirstWordWithA();
     test_getLastWordInFirstStringFromSecondString();
+    test_isEqualWordsInString();
 }

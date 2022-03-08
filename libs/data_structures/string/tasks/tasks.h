@@ -35,6 +35,8 @@ int getWordBeforeFirstWordWithA(char *s);
 wordDescriptor getLastWordInFirstStringFromSecondString(char *s1, char *s2);// возвращает последнее из слов первой строки s1,
                                             // которое есть во второй строке s2
 
-void wordDescriptorToString(wordDescriptor word, char *destination);
+void wordDescriptorToString(wordDescriptor word, char *destination);// записыавет слово word в строку destination
+
+bool isEqualWordsInString(char *source);// возвращает значение истина если в строке source есть одинаковые слова
 
 #endif //MAIN_C_TASKS_H
