@@ -20,4 +20,6 @@ void printWordsOfStringReverse(char *source);// выводит слова стр
 
 int getCountOfWordsPalindromes(char *source);// возвращает количество слов-палиндромов в строке source
 
+char *getStringWithAlternatingWords(char *ch1, char *ch2);//
+
 #endif //MAIN_C_TASKS_H

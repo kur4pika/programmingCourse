@@ -10,7 +10,7 @@
 #define MAX_WORD_SIZE 20
 
 static char _stringBuffer[MAX_STRING_SIZE];
-static char *_stringSpaces = "                                ";
+static char _stringSpaces[MAX_STRING_SIZE] = "                                                                      ";
 
 size_t strlen(const char *begin);// возвращает количество символов в строке
 

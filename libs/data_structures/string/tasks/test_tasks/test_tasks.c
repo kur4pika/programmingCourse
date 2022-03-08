@@ -280,6 +280,7 @@ void test_areWordsOfStringLexicographicallyOrdered() {
 }
 
 
+
 void test_printWordsOfStringReverse() {
     char s[MAX_STRING_SIZE] = "kurapik kurapika kur";
 
@@ -319,6 +320,60 @@ void test_getCountOfWordsPalindromes() {
     test_getCountOfWordsPalindromes_allPalindrome();
 }
 
+
+
+void test_getStringWithAlternatingWords_emptyStrings() {
+    char s1[MAX_STRING_SIZE] = "";
+    char s2[MAX_STRING_SIZE] = "";
+
+    char *s = getStringWithAlternatingWords(s1, s2);
+    printf("%s", s);
+
+    char expectation[MAX_STRING_SIZE] = "";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_getStringWithAlternatingWords_stringLengthsEquals() {
+    char s1[MAX_STRING_SIZE] = "kurapika";
+    char s2[MAX_STRING_SIZE] = "zharik";
+
+    char *s = getStringWithAlternatingWords(s1, s2);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika zharik";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_getStringWithAlternatingWords_length1MoreLength2() {
+    char s1[MAX_STRING_SIZE] = "kurapika kuruta";
+    char s2[MAX_STRING_SIZE] = "zharik";
+
+    char *s = getStringWithAlternatingWords(s1, s2);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika zharik kuruta";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_getStringWithAlternatingWords_length1LessLength2() {
+    char s1[MAX_STRING_SIZE] = "kurapika";
+    char s2[MAX_STRING_SIZE] = "zharik kuruta";
+
+    char *s = getStringWithAlternatingWords(s1, s2);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika zharik kuruta";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_getStringWithAlternatingWords() {
+    test_getStringWithAlternatingWords_emptyStrings();
+    test_getStringWithAlternatingWords_stringLengthsEquals();
+    test_getStringWithAlternatingWords_length1MoreLength2();
+    test_getStringWithAlternatingWords_length1LessLength2();
+}
+
 void test_tasks() {
     test_removeNonLetters();
     test_removeExtraSpaces();
@@ -328,5 +383,5 @@ void test_tasks() {
     test_areWordsOfStringLexicographicallyOrdered();
     //test_printWordsOfStringReverse();
     test_getCountOfWordsPalindromes();
-
+    test_getStringWithAlternatingWords();
 }

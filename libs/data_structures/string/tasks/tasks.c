@@ -197,7 +197,7 @@ void printWordsOfStringReverse(char *source) {
 // task 8
 
 // возвращает значение 'истина', если слово является палиндромом, иначе - 'ложь'
-bool isWordPalindrome(wordDescriptor word){
+bool isWordPalindrome(wordDescriptor word) {
     word.end--;
     for (; word.begin < word.end; word.begin++, word.end--)
         if (*word.begin != *word.end)
@@ -207,12 +207,12 @@ bool isWordPalindrome(wordDescriptor word){
 }
 
 // возвращает количество слов-палиндромов в строке source
-int getCountOfWordsPalindromes(char *source){
+int getCountOfWordsPalindromes(char *source) {
     char *beginSearch = source;
     wordDescriptor word;
 
     int counterWordsPalindrome = 0;
-    while (getWord(beginSearch, &word)){
+    while (getWord(beginSearch, &word)) {
         if (isWordPalindrome(word))
             counterWordsPalindrome++;
 
@@ -220,4 +220,35 @@ int getCountOfWordsPalindromes(char *source){
     }
 
     return counterWordsPalindrome;
+}
+
+
+
+// task 9
+
+// возвращает указатель на начало строки, в которой чередуются слова первой и второй строки
+char *getStringWithAlternatingWords(char *ch1, char *ch2) {
+    memcpy(_stringBuffer, _stringSpaces, MAX_STRING_SIZE);
+    char *beginSearch1 = ch1, *beginSearch2 = ch2;
+    char *endStr = _stringBuffer - 1;
+
+    wordDescriptor word1, word2;
+    bool isW1Found, isW2Found;
+
+    while ((isW1Found = getWord(beginSearch1, &word1)),
+            (isW2Found = getWord(beginSearch2, &word2)),
+            isW1Found || isW2Found) {
+        if (isW1Found){
+            endStr = copy(word1.begin, word1.end, endStr + 1);
+            beginSearch1 = word1.end;
+        }
+        if (isW2Found){
+            endStr = copy(word2.begin, word2.end, endStr + 1);
+            beginSearch2 = word2.end;
+        }
+    }
+
+    *(endStr + (endStr == _stringBuffer - 1)) = '\0';
+
+    return _stringBuffer;
 }
