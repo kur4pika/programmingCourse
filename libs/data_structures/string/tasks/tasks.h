@@ -7,6 +7,8 @@ void removeNonLetters(char *s);// удаляет из строки s все пр
 
 void removeExtraSpaces(char *s);// удаляет пробелы между словами строки s до одного
 
+void digitToStartInWordsOfString(char *s);
+
 void reverseLettersOfWordsOfString(char *s);// обращает каждое слово строки s
 
 void replaceDigitsWithSpaces(char *s);// заменяет каждую цифру в строке s на соотвутсвующее число пробелов

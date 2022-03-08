@@ -103,6 +103,43 @@ void test_removeExtraSpaces() {
 
 
 
+void test_digitToStartInWordsOfString_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    digitToStartInWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_digitToStartInWordsOfString_oneWord() {
+    char s[MAX_STRING_SIZE] = "1kur4ap2ik8a2";
+
+    digitToStartInWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "28241kurapika";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_digitToStartInWordsOfString_fewWords() {
+    char s[MAX_STRING_SIZE] = "k2u4ra1pi8ka3 BE5S2T B1O2Y6";
+
+    digitToStartInWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "38142kurapika 25BEST 621BOY";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_digitToStartInWordsOfString() {
+    test_digitToStartInWordsOfString_emptyString();
+    test_digitToStartInWordsOfString_oneWord();
+    test_digitToStartInWordsOfString_fewWords();
+}
+
+
 void test_reverseLettersOfWordsOfString_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -114,7 +151,7 @@ void test_reverseLettersOfWordsOfString_emptyString() {
 }
 
 void test_reverseLettersOfWordsOfString_oneWord() {
-    char *s = "kurapika";
+    char s[MAX_STRING_SIZE] = "kurapika";
 
     reverseLettersOfWordsOfString(s);
 
@@ -124,7 +161,7 @@ void test_reverseLettersOfWordsOfString_oneWord() {
 }
 
 void test_reverseLettersOfWordsOfString_fewWords() {
-    char *s = "kurapika BEST BOY";
+    char s[MAX_STRING_SIZE] = "kurapika BEST BOY";
 
     reverseLettersOfWordsOfString(s);
 
@@ -377,7 +414,8 @@ void test_getStringWithAlternatingWords() {
 void test_tasks() {
     test_removeNonLetters();
     test_removeExtraSpaces();
-    //test_reverseLettersOfWordsOfString();
+    test_digitToStartInWordsOfString();
+    test_reverseLettersOfWordsOfString();
     test_replaceDigitsWithSpaces();
     test_replace();
     test_areWordsOfStringLexicographicallyOrdered();

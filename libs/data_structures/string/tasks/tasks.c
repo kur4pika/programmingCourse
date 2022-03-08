@@ -37,12 +37,14 @@ void removeExtraSpaces(char *s) {
 
 // task 3
 
+// перемещает в слове word цифры в начало, при этом инвертируя их
 void digitToStart(wordDescriptor word) {
     char *endStringBuffer = copy(word.begin, word.end, _stringBuffer);
     char *recPosition = copyIfReverse(endStringBuffer - 1, _stringBuffer - 1, word.begin, isdigit);
     copyIf(_stringBuffer, endStringBuffer, recPosition, isalpha);
 }
 
+// перемещает цифры в начало слов строки s, при этом инвертируя их
 void digitToStartInWordsOfString(char *s) {
     char *beginSearch = s;
     wordDescriptor word;
@@ -52,16 +54,18 @@ void digitToStartInWordsOfString(char *s) {
     }
 }
 
-void reverseLettersOfWord(wordDescriptor word) {
-    char *endStringBuffer = copyReverse(word.begin, word.end, _stringBuffer);
-    copyReverse(endStringBuffer - 1, _stringBuffer, word.begin);
+// обращает слово word
+void reverseLettersOfWords(wordDescriptor word) {
+    char *endStringBuffer = copy(word.end + 1, word.begin + 1, _stringBuffer);
+    copyIfReverse(endStringBuffer - 1, _stringBuffer - 1, word.end + 1, isgraph);
 }
 
+// обращает каждое слово строки s
 void reverseLettersOfWordsOfString(char *s) {
-    char *beginSearch = &s[strlen(s)];
+    char *beginSearch = &s[strlen(s) + 1];
     wordDescriptor word;
     while (getWordReverse(beginSearch, s - 1, &word)) {
-        reverseLettersOfWord(word);
+        reverseLettersOfWords(word);
         beginSearch = word.end;
     }
 }
@@ -196,7 +200,7 @@ void printWordsOfStringReverse(char *source) {
 
 // task 8
 
-// возвращает значение 'истина', если слово является палиндромом, иначе - 'ложь'
+// возвращает значение 'истина', если слово word является палиндромом, иначе - 'ложь'
 bool isWordPalindrome(wordDescriptor word) {
     word.end--;
     for (; word.begin < word.end; word.begin++, word.end--)
@@ -226,7 +230,7 @@ int getCountOfWordsPalindromes(char *source) {
 
 // task 9
 
-// возвращает указатель на начало строки, в которой чередуются слова первой и второй строки
+// возвращает указатель на начало строки, в которой чередуются слова первой ch1 и второй ch2 строки
 char *getStringWithAlternatingWords(char *ch1, char *ch2) {
     memcpy(_stringBuffer, _stringSpaces, MAX_STRING_SIZE);
     char *beginSearch1 = ch1, *beginSearch2 = ch2;
@@ -252,3 +256,9 @@ char *getStringWithAlternatingWords(char *ch1, char *ch2) {
 
     return _stringBuffer;
 }
+
+
+
+// task 10
+
+//
