@@ -5,6 +5,12 @@
 #include <assert.h>
 #include <stdio.h>
 
+
+#define EMPTY_STRING 0
+#define NOT_FOUND_A_WORD_WITH_A 1
+#define FIRST_WORD_WITH_A 2
+#define WORD_FOUND 3
+
 void test_removeNonLetters_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -53,7 +59,6 @@ void test_removeNonLetters() {
 }
 
 
-
 void test_removeExtraSpaces_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -100,7 +105,6 @@ void test_removeExtraSpaces() {
     test_removeExtraSpaces_stringWithoutSpaces();
     test_removeExtraSpaces_stringWithSpaces();
 }
-
 
 
 void test_digitToStartInWordsOfString_emptyString() {
@@ -177,8 +181,6 @@ void test_reverseLettersOfWordsOfString() {
 }
 
 
-
-
 void test_replaceDigitsWithSpaces_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -225,7 +227,6 @@ void test_replaceDigitsWithSpaces() {
     test_replaceDigitsWithSpaces_stringWithDigits();
     test_replaceDigitsWithSpaces_allDigit();
 }
-
 
 
 void test_replace_emptyString() {
@@ -284,7 +285,6 @@ void test_replace() {
 }
 
 
-
 void test_areWordsOfStringLexicographicallyOrdered_emptyString() {
     char s[MAX_STRING_SIZE] = "";
 
@@ -317,13 +317,11 @@ void test_areWordsOfStringLexicographicallyOrdered() {
 }
 
 
-
 void test_printWordsOfStringReverse() {
     char s[MAX_STRING_SIZE] = "kurapik kurapika kur";
 
     printWordsOfStringReverse(s);
 }
-
 
 
 void test_getCountOfWordsPalindromes_emptyString() {
@@ -358,13 +356,11 @@ void test_getCountOfWordsPalindromes() {
 }
 
 
-
 void test_getStringWithAlternatingWords_emptyStrings() {
     char s1[MAX_STRING_SIZE] = "";
     char s2[MAX_STRING_SIZE] = "";
 
     char *s = getStringWithAlternatingWords(s1, s2);
-    printf("%s", s);
 
     char expectation[MAX_STRING_SIZE] = "";
 
@@ -411,6 +407,147 @@ void test_getStringWithAlternatingWords() {
     test_getStringWithAlternatingWords_length1LessLength2();
 }
 
+
+void test_reverseWordsOfString_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    reverseWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_reverseWordsOfString_oneWord() {
+    char s[MAX_STRING_SIZE] = "kurapika";
+
+    reverseWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_reverseWordsOfString_twoWord() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta";
+
+    reverseWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "kuruta kurapika";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_reverseWordsOfString_fewWord() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta zharik";
+
+    reverseWordsOfString(s);
+
+    char expectation[MAX_STRING_SIZE] = "zharik kuruta kurapika";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_reverseWordsOfString() {
+    test_reverseWordsOfString_emptyString();
+    test_reverseWordsOfString_oneWord();
+    test_reverseWordsOfString_twoWord();
+    test_reverseWordsOfString_fewWord();
+}
+
+
+
+void test_getWordBeforeFirstWordWithA_emptyString() {
+    char s[MAX_STRING_SIZE] = "";
+
+    assert(getWordBeforeFirstWordWithA(s) == EMPTY_STRING);
+}
+
+void test_getWordBeforeFirstWordWithA_noWordWithA() {
+    char s[MAX_STRING_SIZE] = "kurpik kurut best boy";
+
+    assert(getWordBeforeFirstWordWithA(s) == NOT_FOUND_A_WORD_WITH_A);
+}
+
+void test_getWordBeforeFirstWordWithA_firstWordWithA() {
+    char s[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+
+    assert(getWordBeforeFirstWordWithA(s) == FIRST_WORD_WITH_A);
+}
+
+void test_getWordBeforeFirstWordWithA_wordWithA() {
+    char s[MAX_STRING_SIZE] = "kurpik kuruta best boy";
+
+    assert(getWordBeforeFirstWordWithA(s) == WORD_FOUND);
+}
+
+void test_getWordBeforeFirstWordWithA() {
+    test_getWordBeforeFirstWordWithA_emptyString();
+    test_getWordBeforeFirstWordWithA_noWordWithA();
+    test_getWordBeforeFirstWordWithA_firstWordWithA();
+    test_getWordBeforeFirstWordWithA_wordWithA();
+}
+
+
+
+void test_getLastWordInFirstStringFromSecondString_emptyString() {
+    char s1[MAX_STRING_SIZE] = "";
+    char s2[MAX_STRING_SIZE] = "";
+
+    wordDescriptor word = getLastWordInFirstStringFromSecondString(s1, s2);
+
+    assert(word.begin == 0 && word.end == 0);
+}
+
+void test_getLastWordInFirstStringFromSecondString_noWords() {
+    char s1[MAX_STRING_SIZE] = "";
+    char s2[MAX_STRING_SIZE] = "kurapika";
+
+    wordDescriptor word = getLastWordInFirstStringFromSecondString(s1, s2);
+
+    assert(word.begin == 0 && word.end == 0);
+}
+
+void test_getLastWordInFirstStringFromSecondString_oneWordsMatches() {
+    char s1[MAX_STRING_SIZE] = "kurapika";
+    char s2[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+
+    wordDescriptor word = getLastWordInFirstStringFromSecondString(s1, s2);
+
+    char s[MAX_STRING_SIZE];
+
+    wordDescriptorToString(word, s);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_getLastWordInFirstStringFromSecondString_fewWordsMatches() {
+    char s1[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+    char s2[MAX_STRING_SIZE] = "kurapika kuruta best boy";
+
+    wordDescriptor word = getLastWordInFirstStringFromSecondString(s1, s2);
+
+    char s[MAX_STRING_SIZE];
+
+    wordDescriptorToString(word, s);
+
+    char expectation[MAX_STRING_SIZE] = "boy";
+
+    assert(strcmp(s, expectation) == 0);
+}
+
+void test_getLastWordInFirstStringFromSecondString() {
+    test_getLastWordInFirstStringFromSecondString_emptyString();
+    test_getLastWordInFirstStringFromSecondString_noWords();
+    test_getLastWordInFirstStringFromSecondString_oneWordsMatches();
+    test_getLastWordInFirstStringFromSecondString_fewWordsMatches();
+}
+
+
+
+
 void test_tasks() {
     test_removeNonLetters();
     test_removeExtraSpaces();
@@ -422,4 +559,7 @@ void test_tasks() {
     //test_printWordsOfStringReverse();
     test_getCountOfWordsPalindromes();
     test_getStringWithAlternatingWords();
+    test_reverseWordsOfString();
+    test_getWordBeforeFirstWordWithA();
+    test_getLastWordInFirstStringFromSecondString();
 }

@@ -3,6 +3,11 @@
 #include "../string.h"
 #include <stdio.h>
 
+#define EMPTY_STRING 0
+#define NOT_FOUND_A_WORD_WITH_A 1
+#define FIRST_WORD_WITH_A 2
+#define WORD_FOUND 3
+
 // task 1
 
 // удаляет из строки s все пробельные символы
@@ -11,7 +16,6 @@ void removeNonLetters(char *s) {
     char *destination = copyIf(s, endSource, s, isgraph);
     *destination = '\0';
 }
-
 
 
 
@@ -135,6 +139,7 @@ void replace(char *source, char *w1, char *w2) {
 }
 
 
+
 // task 6
 
 // возвращает значение 'истина', если слова w1 и w2 упорядочены лексиграфически
@@ -242,11 +247,11 @@ char *getStringWithAlternatingWords(char *ch1, char *ch2) {
     while ((isW1Found = getWord(beginSearch1, &word1)),
             (isW2Found = getWord(beginSearch2, &word2)),
             isW1Found || isW2Found) {
-        if (isW1Found){
+        if (isW1Found) {
             endStr = copy(word1.begin, word1.end, endStr + 1);
             beginSearch1 = word1.end;
         }
-        if (isW2Found){
+        if (isW2Found) {
             endStr = copy(word2.begin, word2.end, endStr + 1);
             beginSearch2 = word2.end;
         }
@@ -261,4 +266,134 @@ char *getStringWithAlternatingWords(char *ch1, char *ch2) {
 
 // task 10
 
-//
+// преобразоввывает строку s, изменяя порядок следования слов в строке на обратный
+void reverseWordsOfString(char *source) {
+    size_t sourceLen = strlen(source);
+    copyReverse(source + sourceLen - 1, source - 1, _stringBuffer);
+    memcpy(source, _stringBuffer, sourceLen);
+    reverseLettersOfWordsOfString(source);
+}
+
+
+
+// task 11
+
+// возвращает значение 'истина', если слова word содержит букву a, иначе - 'ложь'
+bool isWordWithA(wordDescriptor word) {
+    for (; word.begin < word.end; word.begin++)
+        if (*word.begin == 'a')
+            return true;
+
+    return false;
+}
+
+// выводит слово word
+void printWord(wordDescriptor word) {
+    for (; word.begin < word.end; word.begin++)
+        printf("%c", *word.begin);
+
+    printf("\n");
+}
+
+// выводит слово, предшествующее первому из слов, содержащих букву "а"
+void printWordBeforeFirstWordWithA(char *s) {
+    char *beginSearch = s;
+    wordDescriptor word;
+
+    if (!getWord(beginSearch, &word)) {
+        printf("there is no words in this string\n");
+        return;
+    } else if (isWordWithA(word)) {
+        printf("first word with 'a' in this string\n");
+        return;
+    }
+    beginSearch = word.end;
+
+    wordDescriptor previousWord = word;
+
+    bool isAinString = false;
+    while (getWord(beginSearch, &word)) {
+        if (isWordWithA(word)) {
+            printWord(previousWord);
+            isAinString = true;
+            break;
+        }
+
+        previousWord = word;
+        beginSearch = word.end;
+    }
+
+    if (!isAinString)
+        printf("there is words with 'a' in this string");
+}
+
+// возвращает 0, если строка пуста,
+// 1, если строка не содержит слов с "а",
+// 2, если первое слово в строке содержит "а",
+// 3, если слово с "а" не первое
+int getWordBeforeFirstWordWithA(char *s) {
+    char *beginSearch = s;
+    wordDescriptor word;
+
+    if (!getWord(beginSearch, &word))
+        return EMPTY_STRING;
+    else if (isWordWithA(word)) {
+        return FIRST_WORD_WITH_A;
+    }
+    beginSearch = word.end;
+
+    while (getWord(beginSearch, &word)) {
+        if (isWordWithA(word))
+            return WORD_FOUND;
+        beginSearch = word.end;
+    }
+
+    return NOT_FOUND_A_WORD_WITH_A;
+}
+
+
+
+// task 12
+
+// возвращает значение 'истина', если слово word есть в строке source
+bool isWordInString(char *source, wordDescriptor word) {
+    char *beginSearch = source;
+    wordDescriptor wordString;
+
+    while (getWord(beginSearch, &wordString)) {
+        size_t wordStringSize = wordString.end - wordString.begin;
+        size_t wordSize = word.begin - word.end;
+        if (wordStringSize == wordSize && memcmp(word.end + 1, wordString.begin, wordSize) == 0)
+            return true;
+
+        beginSearch = wordString.end;
+    }
+
+    return false;
+}
+
+// возвращает последнее из слов первой строки s1, которое есть во второй строке s2
+wordDescriptor getLastWordInFirstStringFromSecondString(char *s1, char *s2) {
+    char *beginSearch = s1 + strlen(s1) - 1;
+    wordDescriptor word;
+
+    while (getWordReverse(beginSearch, s1 - 1, &word)) {
+        if (isWordInString(s2, word)){
+            char *t = word.begin;
+            word.begin = word.end + 1;
+            word.end = t + 1;
+            return word;
+        }
+
+        beginSearch = word.end;
+    }
+
+    return (wordDescriptor) {NULL, NULL};
+}
+
+void wordDescriptorToString(wordDescriptor word, char *destination){
+    for (; word.begin < word.end; word.begin++)
+        *(destination++) = *word.begin;
+
+    *destination = '\0';
+}

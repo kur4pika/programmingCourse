@@ -82,8 +82,8 @@ char *copy(const char *beginSource, const char *endSource, char *beginDestinatio
 // фрагмент памяти, начиная с адреса rbeginSource до rendSource
 // Возвращает указатель на следующий слева свободный фрагмент памяти в destination
 char* copyReverse(char *rbeginSource, const char *rendSource, char *beginDestination){
-    while (rbeginSource-- > rendSource)
-        *(beginDestination++) = *(rbeginSource + 1);
+    while (rbeginSource != rendSource)
+        memcpy(beginDestination++, rbeginSource--, sizeof(char ));
 
     return beginDestination;
 }
