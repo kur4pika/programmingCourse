@@ -607,7 +607,7 @@ void test_getStringFromWordsWhichDifferentFromLastWord_emptyString() {
 
     char expectation[MAX_STRING_SIZE] = "";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_getStringFromWordsWhichDifferentFromLastWord_lastWordOnce() {
@@ -617,7 +617,7 @@ void test_getStringFromWordsWhichDifferentFromLastWord_lastWordOnce() {
 
     char expectation[MAX_STRING_SIZE] = "kurapika kuruta best";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_getStringFromWordsWhichDifferentFromLastWord_lastWordTwice() {
@@ -627,7 +627,7 @@ void test_getStringFromWordsWhichDifferentFromLastWord_lastWordTwice() {
 
     char expectation[MAX_STRING_SIZE] = "kurapika kuruta best";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_getStringFromWordsWhichDifferentFromLastWord_allWordsSame() {
@@ -637,7 +637,7 @@ void test_getStringFromWordsWhichDifferentFromLastWord_allWordsSame() {
 
     char expectation[MAX_STRING_SIZE] = "";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_getStringFromWordsWhichDifferentFromLastWord() {
@@ -654,9 +654,9 @@ void test_deleteWordsPalindromesFromString_emptyString() {
 
     deleteWordsPalindromesFromString(s);
 
-    char expectation[MAX_STRING_SIZE] = " ";
+    char expectation[MAX_STRING_SIZE] = "";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_deleteWordsPalindromesFromString_noPalindrome() {
@@ -666,7 +666,7 @@ void test_deleteWordsPalindromesFromString_noPalindrome() {
 
     char expectation[MAX_STRING_SIZE] = "kurapika kuruta";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_deleteWordsPalindromesFromString_onePalindrome() {
@@ -676,7 +676,7 @@ void test_deleteWordsPalindromesFromString_onePalindrome() {
 
     char expectation[MAX_STRING_SIZE] = "kuruta";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_deleteWordsPalindromesFromString_allPalindrome() {
@@ -685,9 +685,9 @@ void test_deleteWordsPalindromesFromString_allPalindrome() {
     deleteWordsPalindromesFromString(s);
     printf("%s", s);
 
-    char expectation[MAX_STRING_SIZE] = " ";
+    char expectation[MAX_STRING_SIZE] = "";
 
-    assert(strcmp(s, expectation));
+    assert(strcmp(s, expectation) == 0);
 }
 
 void test_deleteWordsPalindromesFromString() {
@@ -695,6 +695,60 @@ void test_deleteWordsPalindromesFromString() {
     test_deleteWordsPalindromesFromString_noPalindrome();
     test_deleteWordsPalindromesFromString_onePalindrome();
     test_deleteWordsPalindromesFromString_allPalindrome();
+}
+
+
+
+void test_addToLowerStringLastWordsOfHigherString_emptyString() {
+    char s1[MAX_STRING_SIZE] = "";
+    char s2[MAX_STRING_SIZE] = "";
+
+    addToLowerStringLastWordsOfHigherString(s1, s2);
+
+    char expectation[MAX_STRING_SIZE] = "";
+
+    assert(strcmp(s1, expectation) == 0 && strcmp(s2, expectation) == 0);
+}
+
+void test_addToLowerStringLastWordsOfHigherString_s1EqualsS2() {
+    char s1[MAX_STRING_SIZE] = "kurapika";
+    char s2[MAX_STRING_SIZE] = "kuruta";
+
+    addToLowerStringLastWordsOfHigherString(s1, s2);
+
+    char expectation1[MAX_STRING_SIZE] = "kurapika";
+    char expectation2[MAX_STRING_SIZE] = "kuruta";
+
+    assert(strcmp(s1, expectation1) == 0 && strcmp(s2, expectation2) == 0);
+}
+
+void test_addToLowerStringLastWordsOfHigherString_s1MoreS2() {
+    char s1[MAX_STRING_SIZE] = "kurapika kuruta";
+    char s2[MAX_STRING_SIZE] = "kurapika";
+
+    addToLowerStringLastWordsOfHigherString(s1, s2);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika kuruta";
+
+    assert(strcmp(s2, expectation) == 0);
+}
+
+void test_addToLowerStringLastWordsOfHigherString_s1LessS2() {
+    char s1[MAX_STRING_SIZE] = "kurapika";
+    char s2[MAX_STRING_SIZE] = "kurapika bestie";
+
+    addToLowerStringLastWordsOfHigherString(s1, s2);
+
+    char expectation[MAX_STRING_SIZE] = "kurapika bestie";
+
+    assert(strcmp(s1, expectation) == 0);
+}
+
+void test_addToLowerStringLastWordsOfHigherString() {
+    test_addToLowerStringLastWordsOfHigherString_emptyString();
+    test_addToLowerStringLastWordsOfHigherString_s1EqualsS2();
+    test_addToLowerStringLastWordsOfHigherString_s1MoreS2();
+    test_addToLowerStringLastWordsOfHigherString_s1LessS2();
 }
 
 void test_tasks() {
@@ -715,4 +769,5 @@ void test_tasks() {
     test_isLettersOfWordsInStringEqual();
     test_getStringFromWordsWhichDifferentFromLastWord();
     test_deleteWordsPalindromesFromString();
+    test_addToLowerStringLastWordsOfHigherString();
 }

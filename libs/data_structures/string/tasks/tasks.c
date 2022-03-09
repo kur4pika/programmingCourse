@@ -459,7 +459,7 @@ char *getStringFromWordsWhichDifferentFromLastWord(char *source) {
     wordDescriptor lastWord;
 
     if (!getWordReverse(beginSearch, source - 1, &lastWord))
-        return " \0";
+        return "\0";
     size_t lastWordSize = lastWord.begin - lastWord.end;
 
     beginSearch = source;
@@ -469,7 +469,7 @@ char *getStringFromWordsWhichDifferentFromLastWord(char *source) {
     char *endStringBuffer = _stringBuffer - 1;
     while (getWord(beginSearch, &word)) {
         size_t wordSize = word.end - word.begin;
-        if (wordSize != lastWordSize || memcmp(word.begin, lastWord.end + 1, wordSize) == 0)
+        if (wordSize != lastWordSize || memcmp(word.begin, lastWord.end + 1, wordSize) != 0)
             endStringBuffer = copy(word.begin, word.end, endStringBuffer + 1);
 
         beginSearch = word.end;
@@ -486,7 +486,8 @@ char *getStringFromWordsWhichDifferentFromLastWord(char *source) {
 
 // удаляет из строки source слова-палиндромы
 void deleteWordsPalindromesFromString(char *source) {
-    char *beginSearch = source;
+    memcpy(_stringBuffer, source, strlen(source));
+    char *beginSearch = _stringBuffer;
     wordDescriptor word;
 
     memcpy(source, _stringSpaces, MAX_STRING_SIZE);
@@ -500,4 +501,58 @@ void deleteWordsPalindromesFromString(char *source) {
     }
 
     *(endSource + (endSource == source - 1)) = '\0';
+}
+
+
+
+// task 18
+
+// возвращает количество слов в строке source
+int getCountOfWordsOfString(char *source) {
+    char *beginSearch = source;
+    wordDescriptor word;
+
+    int counterWords = 0;
+    while (getWord(beginSearch, &word)) {
+        counterWords++;
+
+        beginSearch = word.end;
+    }
+
+    return counterWords;
+}
+
+// дополняет строку s1 последними словами строки s2
+void addToLowerStringLastWordsOfHigherString_(char *s1, size_t s1Size, size_t s1CountWords, char *s2, size_t s2Size, size_t s2CountWord){
+    s1[s1Size] = ' ';
+    char *beginSearch = s2 + s2Size;
+    wordDescriptor word;
+
+    char *endStr = s1 + s1Size;
+    while (getWordReverse(beginSearch, s2 - 1, &word)) {
+        endStr = copy(word.end + 1, word.begin + 1, endStr + 1);
+        *endStr = ' ';
+
+        if (--s2CountWord == s1CountWords)
+            break;
+
+        beginSearch = word.end;
+    }
+
+    *(endStr) = '\0';
+}
+
+// дополняет строку s1 или s2, содержащую меньшее количество слов, последними
+// словами строки, в которой содержится большее количество слов.
+void addToLowerStringLastWordsOfHigherString(char *s1, char *s2) {
+    size_t s1Size = strlen(s1);
+    size_t s2Size = strlen(s2);
+
+    size_t s1CountWords = getCountOfWordsOfString(s1);
+    size_t s2CountWords = getCountOfWordsOfString(s2);
+
+    if (s1CountWords < s2CountWords)
+        addToLowerStringLastWordsOfHigherString_(s1, s1Size, s1CountWords, s2, s2Size, s2CountWords);
+    else if (s2CountWords < s1CountWords)
+        addToLowerStringLastWordsOfHigherString_(s2, s2Size, s2CountWords, s1, s1Size, s1CountWords);
 }

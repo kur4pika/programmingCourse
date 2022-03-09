@@ -49,5 +49,9 @@ char *getStringFromWordsWhichDifferentFromLastWord(char *source);// возвра
 // удаляет из строки source слова-палиндромы
 void deleteWordsPalindromesFromString(char *source);
 
+// дополняет строку s1 или s2, содержащую меньшее количество слов, последними
+// словами строки, в которой содержится большее количество слов.
+void addToLowerStringLastWordsOfHigherString(char *s1, char *s2);
+
 #endif //MAIN_C_TASKS_H
 
