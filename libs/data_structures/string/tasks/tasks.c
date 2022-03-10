@@ -26,13 +26,12 @@ void removeNonLetters(char *s) {
 void removeExtraSpaces(char *s) {
     char *begin = ++s;
     while (*begin != '\0') {
-        if (isspace(*begin) && isspace(*(s - 1))) {
+        if (isspace(*begin) && isspace(*(s - 1)))
             begin++;
-            continue;
+        else {
+            *(s++) = *begin;
+            begin++;
         }
-
-        *(s++) = *begin;
-        begin++;
     }
 
     *s = '\0';
@@ -62,12 +61,11 @@ void digitToStartInWordsOfString(char *s) {
 // обращает слово word
 void reverseLettersOfWords(wordDescriptor word) {
     char *endStringBuffer = copy(word.end + 1, word.begin + 1, _stringBuffer);
-    copyIfReverse(endStringBuffer - 1, _stringBuffer - 1, word.end + 1, isgraph);
+    copyReverse(endStringBuffer - 1, _stringBuffer - 1, word.end + 1);
 }
 
-// обращает каждое слово строки s
 void reverseLettersOfWordsOfString(char *s) {
-    char *beginSearch = &s[strlen(s) + 1];
+    char *beginSearch = &s[strlen(s) - 1];
     wordDescriptor word;
     while (getWordReverse(beginSearch, s - 1, &word)) {
         reverseLettersOfWords(word);
@@ -89,11 +87,8 @@ void replaceDigitsWithSpaces(char *s) {
             int digit = _stringBuffer[i++] % '0';
             memcpy(s, _stringSpaces, digit);
             s += digit;
-
-            continue;
-        }
-
-        *(s++) = _stringBuffer[i++];
+        } else
+            *(s++) = _stringBuffer[i++];
     }
 
     *s = '\0';
@@ -313,15 +308,16 @@ void printWordBeforeFirstWordWithA(char *s) {
     wordDescriptor previousWord = word;
 
     bool isAinString = false;
-    while (getWord(beginSearch, &word)) {
-        if (isWordWithA(word)) {
-            printWord(previousWord);
-            isAinString = true;
-            break;
-        }
-
+    bool wordWithA = isWordWithA(word);
+    while (getWord(beginSearch, &word) && !wordWithA) {
         previousWord = word;
         beginSearch = word.end;
+        wordWithA = isWordWithA(word);
+    }
+
+    if (wordWithA) {
+        printWord(previousWord);
+        isAinString = true;
     }
 
     if (!isAinString)
@@ -523,7 +519,8 @@ int getCountOfWordsOfString(char *source) {
 }
 
 // дополняет строку s1 последними словами строки s2
-void addToLowerStringLastWordsOfHigherString_(char *s1, size_t s1Size, size_t s1CountWords, char *s2, size_t s2Size, size_t s2CountWord){
+void addToLowerStringLastWordsOfHigherString_(char *s1, size_t s1Size, size_t s1CountWords, char *s2, size_t s2Size,
+                                              size_t s2CountWord) {
     s1[s1Size] = ' ';
     char *beginSearch = s2 + s2Size;
     wordDescriptor word;
