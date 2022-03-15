@@ -12,16 +12,6 @@ stddef.h
 stdbool.h
 -
 
-C:/CLionProjects/untitled3/libs/algorithms/generating/generating.c
-generating.h
-C:/CLionProjects/untitled3/libs/algorithms/generating/generating.h
-stdlib.h
--
-time.h
--
-limits.h
--
-
 C:/CLionProjects/untitled3/libs/algorithms/generating/generating.h
 stdint.h
 -

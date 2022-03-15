@@ -1,7 +1,7 @@
 #include "libs/algorithms/sorts/test_sorts/test_sorts.h"
 
 int main() {
-    timeExperiment();
+    countComparisonOperationsExperiment();
 
     return 0;
 }

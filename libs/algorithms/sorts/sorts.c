@@ -217,6 +217,6 @@ long long getRadixSortNComps_(int *a, int *n) {
     return nComps;
 }
 
-void getRadixSortNComps(int *a, size_t n) {
-    getRadixSortNComps_(a, a + n);
+long long getRadixSortNComps(int *a, size_t n) {
+    return getRadixSortNComps_(a, a + n);
 }

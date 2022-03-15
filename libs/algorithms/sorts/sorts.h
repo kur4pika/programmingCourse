@@ -32,5 +32,6 @@ long long getInsertionSortNComp(int *a, size_t n);
 
 long long getCombSortNComp(int *a, size_t n);
 
+long long getRadixSortNComps(int *a, size_t n);
 
 #endif //MAIN_C_SORTS_H
