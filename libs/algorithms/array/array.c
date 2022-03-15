@@ -4,6 +4,7 @@
 #include <assert.h>
 #include <stdlib.h>
 
+
 #define EXIT_CODE 1
 #define throwExceptionEmptyArray() fprintf(stderr, "empty array"); exit(EXIT_CODE);
 
@@ -145,15 +146,16 @@ void universSwap(void *a, void *b, const size_t baseSizeType) {
     }
 }
 
-void selectionSort(const long long *a, const int size) {
-    for (int i = 0; i < size - 1; i++) {
-        long long minPos = i;
-        for (int j = i + 1; j < size; j++)
-            if (a[j] < a[minPos])
-                minPos = j;
-        universSwap(&a[i], &a[minPos], sizeof(long long));
-    }
-}
+
+//void selectionSort(const long long *a, const int size) {
+//    for (int i = 0; i < size - 1; i++) {
+//        long long minPos = i;
+//        for (int j = i + 1; j < size; j++)
+//            if (a[j] < a[minPos])
+//                minPos = j;
+//        universSwap(&a[i], &a[minPos], sizeof(long long));
+//    }
+//}
 
 int cmp_long_long(const void *pa, const void *pb) {
     long long arg1 = *(const long long *) pa;
@@ -194,3 +196,11 @@ int countNUnique(long long *a, int *n) {
 //
 //    return max;
 //}
+
+bool isOrdered(const int *a, size_t size) {
+    int i = 1;
+    while (a[i] >= a[i - 1] && i < size)
+        i++;
+
+    return i == size ? true : false;
+}

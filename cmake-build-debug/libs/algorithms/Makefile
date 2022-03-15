@@ -177,6 +177,78 @@ array/array.c.s:
 	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.s
 .PHONY : array/array.c.s
 
+generating/generating.obj: generating/generating.c.obj
+.PHONY : generating/generating.obj
+
+# target to build an object file
+generating/generating.c.obj:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/generating/generating.c.obj
+.PHONY : generating/generating.c.obj
+
+generating/generating.i: generating/generating.c.i
+.PHONY : generating/generating.i
+
+# target to preprocess a source file
+generating/generating.c.i:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/generating/generating.c.i
+.PHONY : generating/generating.c.i
+
+generating/generating.s: generating/generating.c.s
+.PHONY : generating/generating.s
+
+# target to generate assembly for a file
+generating/generating.c.s:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/generating/generating.c.s
+.PHONY : generating/generating.c.s
+
+sorts/sorts.obj: sorts/sorts.c.obj
+.PHONY : sorts/sorts.obj
+
+# target to build an object file
+sorts/sorts.c.obj:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/sorts/sorts.c.obj
+.PHONY : sorts/sorts.c.obj
+
+sorts/sorts.i: sorts/sorts.c.i
+.PHONY : sorts/sorts.i
+
+# target to preprocess a source file
+sorts/sorts.c.i:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/sorts/sorts.c.i
+.PHONY : sorts/sorts.c.i
+
+sorts/sorts.s: sorts/sorts.c.s
+.PHONY : sorts/sorts.s
+
+# target to generate assembly for a file
+sorts/sorts.c.s:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/sorts/sorts.c.s
+.PHONY : sorts/sorts.c.s
+
+sorts/test_sorts/test_sorts.obj: sorts/test_sorts/test_sorts.c.obj
+.PHONY : sorts/test_sorts/test_sorts.obj
+
+# target to build an object file
+sorts/test_sorts/test_sorts.c.obj:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/sorts/test_sorts/test_sorts.c.obj
+.PHONY : sorts/test_sorts/test_sorts.c.obj
+
+sorts/test_sorts/test_sorts.i: sorts/test_sorts/test_sorts.c.i
+.PHONY : sorts/test_sorts/test_sorts.i
+
+# target to preprocess a source file
+sorts/test_sorts/test_sorts.c.i:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/sorts/test_sorts/test_sorts.c.i
+.PHONY : sorts/test_sorts/test_sorts.c.i
+
+sorts/test_sorts/test_sorts.s: sorts/test_sorts/test_sorts.c.s
+.PHONY : sorts/test_sorts/test_sorts.s
+
+# target to generate assembly for a file
+sorts/test_sorts/test_sorts.c.s:
+	cd /d C:\CLionProjects\untitled3\cmake-build-debug && $(MAKE) $(MAKESILENT) -f libs\algorithms\CMakeFiles\algorithms.dir\build.make libs/algorithms/CMakeFiles/algorithms.dir/sorts/test_sorts/test_sorts.c.s
+.PHONY : sorts/test_sorts/test_sorts.c.s
+
 # Help Target
 help:
 	@echo The following are some of the valid targets for this Makefile:
@@ -192,6 +264,15 @@ help:
 	@echo ... array/array.obj
 	@echo ... array/array.i
 	@echo ... array/array.s
+	@echo ... generating/generating.obj
+	@echo ... generating/generating.i
+	@echo ... generating/generating.s
+	@echo ... sorts/sorts.obj
+	@echo ... sorts/sorts.i
+	@echo ... sorts/sorts.s
+	@echo ... sorts/test_sorts/test_sorts.obj
+	@echo ... sorts/test_sorts/test_sorts.i
+	@echo ... sorts/test_sorts/test_sorts.s
 .PHONY : help
 
 

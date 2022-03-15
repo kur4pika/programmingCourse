@@ -160,6 +160,24 @@
 		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/array/array.h">
 			<Option target="untitled3"/>
 		</Unit>
+		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/generating/generating.c">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/generating/generating.h">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/sorts/sorts.c">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/sorts/sorts.h">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/sorts/test_sorts/test_sorts.c">
+			<Option target="algorithms"/>
+		</Unit>
+		<Unit filename="C:/CLionProjects/untitled3/libs/algorithms/sorts/test_sorts/test_sorts.h">
+			<Option target="algorithms"/>
+		</Unit>
 		<Unit filename="C:/CLionProjects/untitled3/libs/data_structures/matrix/matrix.c">
 			<Option target="data_structures"/>
 		</Unit>

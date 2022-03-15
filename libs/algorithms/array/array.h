@@ -2,6 +2,7 @@
 #define MAIN_C_ARRAY_H
 
 #include <stddef.h>
+#include <stdbool.h>
 
 // ввод массива data размера n
 void inputArray_(int *a, size_t n);
@@ -63,12 +64,16 @@ int countIf_(const int *a, size_t n, int (*predicate )(int));
 void deleteIf_(int *a, size_t *n, int (*deletePredicate )(int));
 
 //сортировка массива выбором
-void selectionSort(const long long *a, int size);
+//void selectionSort(const long long *a, int size);
 
 int getMax(const int *a, size_t n);
 
 void deleteNUnique(long long *a, size_t *n);
 
 int countNUnique(long long *a, int *n);
+
+void swap(int *a, int *b);
+
+bool isOrdered(const int *a, size_t size);
 
 #endif //MAIN_C_ARRAY_H

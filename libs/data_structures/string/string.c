@@ -93,8 +93,8 @@ char* copyReverse(char *rbeginSource, const char *rendSource, char *beginDestina
 // возвращает указатель на следующий свободный для записи фрагмент в памяти
 char *copyIf(char *beginSource, const char *endSource, char *beginDestination, int (*f)(int)) {
     while (*beginSource != '\0' && beginSource != endSource)
-        if (f(*(beginSource++)))
-            *(beginDestination++) = *(beginSource - 1);
+        if (f(*beginSource++))
+            *beginDestination++ = *(beginSource - 1);
 
     return beginDestination;
 }
@@ -105,7 +105,7 @@ char *copyIf(char *beginSource, const char *endSource, char *beginDestination, i
 char *copyIfReverse(char *rbeginSource, const char *rendSource, char *beginDestination, int (*f)(int)) {
     while (rbeginSource != rendSource)
         if (f(*(rbeginSource--)))
-            *(beginDestination++) = *(rbeginSource + 1);
+            *beginDestination++ = *(rbeginSource + 1);
 
     return beginDestination;
 }

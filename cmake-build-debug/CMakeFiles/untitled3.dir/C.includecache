@@ -6,15 +6,11 @@
 
 #IncludeRegexTransform: 
 
-C:/CLionProjects/untitled3/libs/data_structures/string/string.c
-string.h
-C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+C:/CLionProjects/untitled3/libs/algorithms/sorts/test_sorts/test_sorts.h
+stdint.h
+-
 
-C:/CLionProjects/untitled3/libs/data_structures/string/string.h
-string.h
--
-ctype.h
--
-stdbool.h
--
+C:/CLionProjects/untitled3/main.c
+libs/algorithms/sorts/test_sorts/test_sorts.h
+C:/CLionProjects/untitled3/libs/algorithms/sorts/test_sorts/test_sorts.h
 

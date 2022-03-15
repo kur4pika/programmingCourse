@@ -7,3 +7,16 @@ libs/algorithms/CMakeFiles/algorithms.dir/algorithms.c.obj
 libs/algorithms/CMakeFiles/algorithms.dir/array/array.c.obj
  C:/CLionProjects/untitled3/libs/algorithms/array/array.c
  C:/CLionProjects/untitled3/libs/algorithms/array/array.h
+libs/algorithms/CMakeFiles/algorithms.dir/generating/generating.c.obj
+ C:/CLionProjects/untitled3/libs/algorithms/generating/generating.c
+ C:/CLionProjects/untitled3/libs/algorithms/generating/generating.h
+libs/algorithms/CMakeFiles/algorithms.dir/sorts/sorts.c.obj
+ C:/CLionProjects/untitled3/libs/algorithms/array/array.h
+ C:/CLionProjects/untitled3/libs/algorithms/sorts/sorts.c
+ C:/CLionProjects/untitled3/libs/algorithms/sorts/sorts.h
+libs/algorithms/CMakeFiles/algorithms.dir/sorts/test_sorts/test_sorts.c.obj
+ C:/CLionProjects/untitled3/libs/algorithms/array/array.h
+ C:/CLionProjects/untitled3/libs/algorithms/generating/generating.h
+ C:/CLionProjects/untitled3/libs/algorithms/sorts/sorts.h
+ C:/CLionProjects/untitled3/libs/algorithms/sorts/test_sorts/test_sorts.c
+ C:/CLionProjects/untitled3/libs/algorithms/sorts/test_sorts/test_sorts.h

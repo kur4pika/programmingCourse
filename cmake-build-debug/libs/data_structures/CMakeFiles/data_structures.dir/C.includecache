@@ -6,6 +6,10 @@
 
 #IncludeRegexTransform: 
 
+C:/CLionProjects/untitled3/libs/data_structures/string/string.c
+string.h
+C:/CLionProjects/untitled3/libs/data_structures/string/string.h
+
 C:/CLionProjects/untitled3/libs/data_structures/string/string.h
 string.h
 -
@@ -13,20 +17,4 @@ ctype.h
 -
 stdbool.h
 -
-
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.c
-tasks.h
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
-../string.h
-C:/CLionProjects/untitled3/libs/data_structures/string/string.h
-stdio.h
--
-stdlib.h
--
-
-C:/CLionProjects/untitled3/libs/data_structures/string/tasks/tasks.h
-stdbool.h
--
-../string.h
-C:/CLionProjects/untitled3/libs/data_structures/string/string.h
 
