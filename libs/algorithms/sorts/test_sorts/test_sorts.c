@@ -36,7 +36,7 @@ checkTime(void (*sortFunc)(int *, size_t), void (*generateFunc)(int *, size_t), 
     static size_t runCounter = 1;
 
     // генерация последовательности
-    static int innerBuffer[100000];
+    static int innerBuffer[150000];
     generateFunc(innerBuffer, size);
     printf("Run#%zu| ", runCounter++);
     printf("Name: %s\n", experimentName);
@@ -75,8 +75,6 @@ checkTime(void (*sortFunc)(int *, size_t), void (*generateFunc)(int *, size_t), 
 void timeExperiment() {
     // описание функций сортировки
     SortFunc sorts[] = {
-            {bubbleSort, "bubbleSort"},
-            {selectionSort, "selectionSort"},
             {insertionSort, "insertionSort"},
             {combSort, "combSort"},
             {shellSort, "shellSort"},
@@ -98,7 +96,7 @@ void timeExperiment() {
     const unsigned CASES_N = ARRAY_SIZE(generatingFuncs);
 
     // запись статистики в файл
-    for (size_t size = 10000; size <= 100000; size += 10000) {
+    for (size_t size = 100000; size <= 150000; size += 5000) {
         printf(" - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -\n");
         printf("Size: %zu\n", size);
         for (int i = 0; i < FUNCS_N; i++) {
